@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>E_Commerce.Business</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Abstract\" />
+    <Folder Include="AbstractUtilities\" />
+    <Folder Include="Concrete\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="CacheManager\" />
+    <Folder Include="AutoMapper\" />
+    <Folder Include="ValidationRules\" />
+    <Folder Include="Utilities\" />
+  </ItemGroup>
+
+</Project>

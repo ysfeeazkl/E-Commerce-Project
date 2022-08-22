@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>E_Commerce.Entities</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Concrete\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="ComplexTypes\" />
+    <Folder Include="Utilities\" />
+  </ItemGroup>
+
+</Project>
