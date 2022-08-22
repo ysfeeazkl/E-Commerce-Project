@@ -8,10 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Concrete\" />
     <Folder Include="Dtos\" />
     <Folder Include="ComplexTypes\" />
     <Folder Include="Utilities\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\E-Commerce.Shared\E-Commerce.Shared.csproj" />
   </ItemGroup>
 
 </Project>
