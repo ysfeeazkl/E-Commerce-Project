@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstract\" />
     <Folder Include="AbstractUtilities\" />
     <Folder Include="Concrete\" />
     <Folder Include="Extensions\" />
@@ -16,6 +15,10 @@
     <Folder Include="AutoMapper\" />
     <Folder Include="ValidationRules\" />
     <Folder Include="Utilities\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\E-Commerce.Shared\E-Commerce.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -19,7 +19,7 @@ namespace E_Commerce.Data.Concrete.Mappings
             builder.Property(a => a.Name).IsRequired();
             builder.Property(a => a.Name).HasMaxLength(150);
 
-            builder.ToTable("Brands");
+            builder.ToTable("Seller");
         }
     }
 }

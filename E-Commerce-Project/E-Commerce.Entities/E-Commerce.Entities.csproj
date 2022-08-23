@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="ComplexTypes\" />
-    <Folder Include="Dtos\" />
     <Folder Include="Utilities\" />
   </ItemGroup>
 
