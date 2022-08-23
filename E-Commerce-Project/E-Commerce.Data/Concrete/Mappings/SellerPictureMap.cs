@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Commerce.Entities.Concrete
+namespace E_Commerce.Data.Concrete.Mappings
 {
-    public class AvatarPicture
+    internal class SellerPictureMap
     {
     }
 }

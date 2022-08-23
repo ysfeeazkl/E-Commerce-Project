@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\" />
     <Folder Include="ComplexTypes\" />
+    <Folder Include="Dtos\" />
     <Folder Include="Utilities\" />
   </ItemGroup>
 

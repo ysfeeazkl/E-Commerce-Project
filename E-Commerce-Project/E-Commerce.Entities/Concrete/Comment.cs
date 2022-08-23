@@ -17,8 +17,11 @@ namespace E_Commerce.Entities.Concrete
         public Product Product { get; set; }
         public int SellerID { get; set; }
         public Seller Seller { get; set; }
+        public int CommentID { get; set; }
+        public Comment BaseComment { get; set; }
 
         public ICollection<Report> Reports { get; set; }
+        public ICollection<Comment> Comments { get; set; }
 
 
     }

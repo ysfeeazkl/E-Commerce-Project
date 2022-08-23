@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace E_Commerce.Entities.Concrete
 {
-    public class ProductPicture : EntityBase<int>, IEntity
+    public class FavoriteAndCustomer :IEntity
     {
-        public string? FileName { get; set; }
-        public string? FilePath { get; set; }
+        public int CustomerID { get; set; }
+        public Customer Customer{ get; set; }
         public int ProductID { get; set; }
-        public Product Product{ get; set; }
+        public Product Product { get; set; }
     }
 }

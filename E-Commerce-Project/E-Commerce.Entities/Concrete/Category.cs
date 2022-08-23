@@ -11,7 +11,6 @@ namespace E_Commerce.Entities.Concrete
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public ICollection<Product> Products { get; set; }
         public ICollection<CategoryAndProduct> CategoryAndProducts { get; set; }
     }
 }

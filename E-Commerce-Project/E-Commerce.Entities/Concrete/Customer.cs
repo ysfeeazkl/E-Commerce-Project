@@ -14,19 +14,15 @@ namespace E_Commerce.Entities.Concrete
         public string PhoneNumber { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
-        public string UserName { get; set; }
         public string EmailAddress { get; set; }
-      
+        public DateTime Birthday { get; set; }
         public int ShoppingCartID { get; set; }
         public ShoppingCart ShoppingCart { get; set; }
-        public int AvatarPictureID { get; set; }
-        public AvatarPicture AvatarPicture { get; set; }
-        public ICollection<Favorite> Favorites { get; set; }
+        public int CustomerPictureID { get; set; }
+        public CustomerPicture CustomerPicture { get; set; }
+        public ICollection<FavoriteAndCustomer> Favorites { get; set; }
         public ICollection<Report> Reports { get; set; }
         public ICollection<Comment> Comments { get; set; }
-
-
-
 
     }
 }
