@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.Shared", "E-Commerce.Shared\E-Commerce.Shared.csproj", "{C304A60F-91E4-4898-AFF6-8FAC1EA08266}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce.Shared", "E-Commerce.Shared\E-Commerce.Shared.csproj", "{C304A60F-91E4-4898-AFF6-8FAC1EA08266}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.Entities", "E-Commerce.Entities\E-Commerce.Entities.csproj", "{4AD4F9CD-B588-432C-AF59-85CC75B73E61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce.Entities", "E-Commerce.Entities\E-Commerce.Entities.csproj", "{4AD4F9CD-B588-432C-AF59-85CC75B73E61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.Data", "E-Commerce.Data\E-Commerce.Data.csproj", "{F76AAD69-27CB-4326-AEC5-D507F5E178D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce.Data", "E-Commerce.Data\E-Commerce.Data.csproj", "{F76AAD69-27CB-4326-AEC5-D507F5E178D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.Business", "E-Commerce.Business\E-Commerce.Business.csproj", "{59F61E04-6052-4ADC-912B-D7800F513345}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce.Business", "E-Commerce.Business\E-Commerce.Business.csproj", "{59F61E04-6052-4ADC-912B-D7800F513345}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.Web", "E-Commerce.Web\E-Commerce.Web.csproj", "{89AD231E-0DF1-4223-9AED-3BBDC1F28D4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce.Web", "E-Commerce.Web\E-Commerce.Web.csproj", "{89AD231E-0DF1-4223-9AED-3BBDC1F28D4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce.API", "E-Commerce.APİ\E-Commerce.API.csproj", "{02EDE828-0F6F-4723-B77E-E7622FD3798F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{89AD231E-0DF1-4223-9AED-3BBDC1F28D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89AD231E-0DF1-4223-9AED-3BBDC1F28D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89AD231E-0DF1-4223-9AED-3BBDC1F28D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02EDE828-0F6F-4723-B77E-E7622FD3798F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02EDE828-0F6F-4723-B77E-E7622FD3798F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02EDE828-0F6F-4723-B77E-E7622FD3798F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02EDE828-0F6F-4723-B77E-E7622FD3798F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

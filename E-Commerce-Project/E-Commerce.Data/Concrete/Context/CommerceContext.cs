@@ -26,6 +26,9 @@ namespace E_Commerce.Data.Concrete.Context
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<SellerPicture> SellerPictures { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<CustomerAndOperationClaim> CustomerAndOperationClaims { get; set; }
+        public DbSet<UserToken> UserTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -44,6 +47,8 @@ namespace E_Commerce.Data.Concrete.Context
             modelBuilder.ApplyConfiguration(new SellerMap());
             modelBuilder.ApplyConfiguration(new SellerPictureMap());
             modelBuilder.ApplyConfiguration(new ShoppingCartMap());
+            modelBuilder.ApplyConfiguration(new OperationClaimMap());
+            modelBuilder.ApplyConfiguration(new CustomerAndOperationClaimMap());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

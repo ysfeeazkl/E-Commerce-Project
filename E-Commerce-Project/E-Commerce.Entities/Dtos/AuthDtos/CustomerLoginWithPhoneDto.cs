@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Commerce.Entities.Dtos.CustomerDtos
+namespace E_Commerce.Entities.Dtos.AuthDtos
 {
-    public class CustomerLoginDto
+    public class CustomerLoginWithPhoneDto
     {
-        public string EmailAddress { get; set; }
+        public string PhoneNumber { get; set; }
         public string Password { get; set; }
-        public string? PhoneNumber { get; set; }
     }
 }

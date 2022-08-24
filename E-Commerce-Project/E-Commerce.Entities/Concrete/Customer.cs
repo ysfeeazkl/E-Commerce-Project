@@ -15,7 +15,10 @@ namespace E_Commerce.Entities.Concrete
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public string EmailAddress { get; set; }
+        public string UserName { get; set; }
+        public string? IpAddress { get; set; }
         public DateTime Birthday { get; set; }
+        public DateTime LastLogin { get; set; }
         public int ShoppingCartID { get; set; }
         public ShoppingCart ShoppingCart { get; set; }
         public int CustomerPictureID { get; set; }
@@ -23,6 +26,8 @@ namespace E_Commerce.Entities.Concrete
         public ICollection<FavoriteAndCustomer> Favorites { get; set; }
         public ICollection<Report> Reports { get; set; }
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<CustomerAndOperationClaim> CustomerAndOperationClaims { get; set; }
+        public ICollection<UserToken> UserTokens { get; set; }
 
     }
 }
