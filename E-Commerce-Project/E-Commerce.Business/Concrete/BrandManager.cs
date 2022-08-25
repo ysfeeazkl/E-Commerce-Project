@@ -34,7 +34,7 @@ namespace E_Commerce.Business.Concrete
             ValidationTool.Validate(new BrandAddDtoValidator(), brandAddDto);
             var brandIsExist = await DbContext.Brands.SingleOrDefaultAsync(a => a.Name == brandAddDto.Name);
             if (brandIsExist is not null)
-                return new DataResult(ResultStatus.Error, "Böyle bir şirket zaten mevcut");
+                return new DataResult(ResultStatus.Error, "Böyle bir Marka zaten mevcut");
             var brand = Mapper.Map<Brand>(brandAddDto);
             brand.CreatedDate = DateTime.Now;
             brand.CreatedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(a => a.Type == "UserId").Value);
@@ -58,7 +58,7 @@ namespace E_Commerce.Business.Concrete
                     await DbContext.SaveChangesAsync();
                 }
             }
-            return new DataResult(ResultStatus.Success, "Başarıyla Şirket Eklendi.");
+            return new DataResult(ResultStatus.Success, "Başarıyla Marka Eklendi.");
         }
 
         public async Task<IDataResult> UpdateAsync(BrandUpdateDto brandUpdateDto)
@@ -67,7 +67,7 @@ namespace E_Commerce.Business.Concrete
 
             var brandIsExist = await DbContext.Brands.SingleOrDefaultAsync(a => a.ID == brandUpdateDto.ID);
             if (brandIsExist is null)
-                return new DataResult(ResultStatus.Error, "Böyle bir şirket bulunamadı.");
+                return new DataResult(ResultStatus.Error, "Böyle bir Marka bulunamadı.");
             var brand = Mapper.Map<BrandUpdateDto, Brand>(brandUpdateDto, brandIsExist);
 
             brand.ModifiedDate = DateTime.Now;
@@ -82,7 +82,7 @@ namespace E_Commerce.Business.Concrete
         {
             var brand = await DbContext.Brands.SingleOrDefaultAsync(a => a.ID == id);
             if (brand is null)
-                return new DataResult(ResultStatus.Error, "Böyle bir şirket bulunmuyor");
+                return new DataResult(ResultStatus.Error, "Böyle bir Marka bulunmuyor");
 
             brand.ModifiedDate = DateTime.Now;
             brand.IsActive = false;
@@ -91,7 +91,7 @@ namespace E_Commerce.Business.Concrete
             DbContext.Update(brand);
             await DbContext.SaveChangesAsync();
 
-            return new DataResult(ResultStatus.Success, "Şirket başarı ile silindi");
+            return new DataResult(ResultStatus.Success, "Marka başarı ile silindi");
         }
 
         public async Task<IDataResult> GetAllAsync(bool? isDeleted, bool isAscending, int currentPage, int pageSize, OrderBy orderBy)
@@ -115,8 +115,13 @@ namespace E_Commerce.Business.Concrete
                     query = isAscending ? query.OrderBy(a => a.CreatedDate) : query.OrderByDescending(a => a.Name);
                     break;
             }
-            var filteredQuery = await query.Skip((currentPage - 1) * pageSize).Take(pageSize).Select(a => Mapper.Map<Brand>(a)).ToListAsync();
-            return new DataResult(ResultStatus.Success, filteredQuery);
+
+            if (currentPage!=0 && pageSize != 0)
+            {
+                var filteredQuery = await query.Skip((currentPage - 1) * pageSize).Take(pageSize).Select(a => Mapper.Map<Brand>(a)).ToListAsync();
+                return new DataResult(ResultStatus.Success, filteredQuery);
+            }
+            return new DataResult(ResultStatus.Success, query);
 
 
         }
@@ -125,7 +130,7 @@ namespace E_Commerce.Business.Concrete
         {
             var brand = await DbContext.Brands.SingleOrDefaultAsync(a=>a.Equals(id));
             if (brand is null)
-                return new DataResult(ResultStatus.Error,"Böyle bir şirket bulunamadı");
+                return new DataResult(ResultStatus.Error,"Böyle bir Marka bulunamadı");
             return new DataResult(ResultStatus.Success,brand);
         }
 
@@ -133,7 +138,7 @@ namespace E_Commerce.Business.Concrete
         {
             var brand = await DbContext.Brands.SingleOrDefaultAsync(a => a.Name == name);
             if (brand is null)
-                return new DataResult(ResultStatus.Error, "Böyle bir şirket bulunamadı");
+                return new DataResult(ResultStatus.Error, "Böyle bir Marka bulunamadı");
             return new DataResult(ResultStatus.Success, brand);
         }
 
@@ -141,10 +146,10 @@ namespace E_Commerce.Business.Concrete
         {
             var brand = await DbContext.Brands.SingleOrDefaultAsync(a => a.ID == id);
             if (brand is null)
-                return new DataResult(ResultStatus.Error, "Böyle bir şirket bulunamadı");
+                return new DataResult(ResultStatus.Error, "Böyle bir Marka bulunamadı");
             DbContext.Brands.Remove(brand);
 
-            return new DataResult(ResultStatus.Success, "Şirket başarılı bir şekilde silindi");
+            return new DataResult(ResultStatus.Success, "Marka başarılı bir şekilde silindi");
         }
 
    
