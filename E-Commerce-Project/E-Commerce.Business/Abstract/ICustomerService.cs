@@ -1,4 +1,5 @@
-﻿using System;
+﻿using E_Commerce.Shared.Utilities.Results.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace E_Commerce.Business.Abstract
 {
     public interface ICustomerService
     {
+        Task<IDataResult> GetByCustomerIdAsync(int ID);
+        Task<IDataResult> GetAllAsync();
+
+
+
     }
 }
