@@ -14,10 +14,7 @@ namespace E_Commerce.Business.ValidationRules.FluentValidation.AuthValidator
         {
             RuleFor(a => a.EmailAddress).NotEmpty().WithMessage("Mail adresi zorunludur.");
             RuleFor(a => a.EmailAddress).Length(5, 80).WithMessage("Mail adresi minimum 5 maksimum 80 karakter olmalıdır.");
-            RuleFor(x => x.Password)
-          .NotEmpty().WithMessage("Parola alanı boş bırakılamaz.")
-          .Matches(@"[][""!@$%&*(){}:;,.?/+_=\\-]")
-           .WithMessage("Parola özel bir karakter içermelidir");
+            RuleFor(a => a.Password).NotEmpty().WithMessage("Parola alanı boş geçilmez");
             RuleFor(a => a.Password).Length(8, 80).WithMessage("Şifre minimum 8 maksimum 80 karakter olmalıdır.");
           
         }

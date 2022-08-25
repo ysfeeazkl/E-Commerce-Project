@@ -10,6 +10,7 @@ namespace E_Commerce.Entities.Concrete
     public class Brand : EntityBase<int>, IEntity
     {
         public string Name { get; set; }
+        public string Introduc { get; set; }
         public BrandPicture? BrandPicture { get; set; }
         public int BrandPictureID { get; set; }
         public ICollection<Product> Products { get; set; }
