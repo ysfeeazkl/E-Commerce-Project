@@ -18,6 +18,7 @@ namespace E_Commerce.Business.AutoMapper
             CreateMap<CustomerLoginWithEmailDto, Customer>();
             CreateMap<CustomerRegisterDto, Customer>();
             CreateMap<CustomerDto, Customer>().ReverseMap();
+            CreateMap<CustomerUpdateDto, Customer>().ReverseMap();
         }
 
     }

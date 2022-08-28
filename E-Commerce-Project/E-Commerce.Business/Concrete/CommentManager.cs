@@ -96,22 +96,6 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, comments);
         }
 
-        public async Task<IDataResult> GetAllByBaseCommentID(int baseCommentId)
-        {
-            var comment =  DbContext.Comments.Where(a => a.BaseCommentID == baseCommentId);
-            if (comment is null)
-                return new DataResult(ResultStatus.Error, "Böyle bir yorum bulunamadı.");
-            return new DataResult(ResultStatus.Success, comment);
-        }
-
-        public async Task<IDataResult> GetAllByCustomerID(int customerId)
-        {
-            var comment = DbContext.Comments.Where(a => a.CustomerID == customerId);
-            if (comment is null)
-                return new DataResult(ResultStatus.Error, "Böyle bir yorum bulunamadı.");
-            return new DataResult(ResultStatus.Success, comment);
-        }
-
         public async Task<IDataResult> GetByID(int id)
         {
             var comment = await DbContext.Comments.SingleOrDefaultAsync(a => a.ID == id);
@@ -120,8 +104,35 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, comment);
         }
 
+        public async Task<IDataResult> GetAllByBaseCommentID(int baseCommentId)
+        {
+            var baseComment = await DbContext.Comments.SingleOrDefaultAsync(a => a.ID == baseCommentId);
+            if (baseComment is null)
+                return new DataResult(ResultStatus.Error, "Böyle bir yorum bulanamadı");
+            var comment =  DbContext.Comments.Where(a => a.BaseCommentID == baseCommentId);
+            if (comment is null)
+                return new DataResult(ResultStatus.Error, "Böyle bir yorum bulunamadı.");
+            return new DataResult(ResultStatus.Success, comment);
+        }
+
+        public async Task<IDataResult> GetAllByCustomerID(int customerId)
+        {
+            var customer = await DbContext.Customers.SingleOrDefaultAsync(a => a.ID == customerId);
+            if (customer is null)
+                return new DataResult(ResultStatus.Error, "Böyle bir kullanıcı bulanamadı");
+            var comment = DbContext.Comments.Where(a => a.CustomerID == customerId);
+            if (comment is null)
+                return new DataResult(ResultStatus.Error, "Böyle bir yorum bulunamadı.");
+            return new DataResult(ResultStatus.Success, comment);
+        }
+
+     
+
         public async Task<IDataResult> GetAllByProductID(int productId)
         {
+            var product = await DbContext.Products.SingleOrDefaultAsync(a => a.ID == productId);
+            if (product is null)
+                return new DataResult(ResultStatus.Error, "Böyle bir ürün bulanamadı");
             var comment = DbContext.Comments.Where(a => a.ProductID == productId);
             if (comment is null)
                 return new DataResult(ResultStatus.Error, "Böyle bir yorum bulunamadı.");
@@ -130,6 +141,9 @@ namespace E_Commerce.Business.Concrete
 
         public async Task<IDataResult> GetAllBySellerID(int sellerId)
         {
+            var seller = await DbContext.Sellers.SingleOrDefaultAsync(a => a.ID == sellerId);
+            if (seller is null)
+                return new DataResult(ResultStatus.Error, "Böyle bir satıcı bulanamadı");
             var comment = DbContext.Comments.Where(a => a.SellerID == sellerId);
             if (comment is null)
                 return new DataResult(ResultStatus.Error, "Böyle bir yorum bulunamadı.");
