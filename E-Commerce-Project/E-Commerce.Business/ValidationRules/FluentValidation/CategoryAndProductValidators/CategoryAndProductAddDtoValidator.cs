@@ -12,8 +12,8 @@ namespace E_Commerce.Business.ValidationRules.FluentValidation.CategoryAndProduc
     {
         public CategoryAndProductAddDtoValidator()
         {
-            RuleFor(a => a.CategoryID).NotEmpty().WithMessage("Category alanı boş geçilmez");
-            RuleFor(a => a.ProductID).NotEmpty().WithMessage("Product alanı boş geçilmez");
+            RuleFor(a => a.CategoryID).GreaterThan(0).WithMessage("Category alanı boş geçilmez");
+            RuleFor(a => a.ProductID).GreaterThan(0).WithMessage("Product alanı boş geçilmez");
       
         }
     }
