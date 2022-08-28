@@ -42,9 +42,7 @@ namespace E_Commerce.Business.Concrete
                 FilePath = result.Data.ToString(),
                 CustomerID = customer.ID,
                 Customer = customer,
-                FileName = result.Message,
-                IsActive = true,
-                IsDeleted = false,
+                FileName = result.Message,              
                 CreatedDate = DateTime.Now,
             };
             await DbContext.CustomerPictures.AddAsync(customerPicture);
@@ -96,7 +94,7 @@ namespace E_Commerce.Business.Concrete
             var customer = await DbContext.Customers.SingleOrDefaultAsync(a => a.ID == customerId);
             if (customer is null)
                 return new DataResult(ResultStatus.Error, "böyle bir kullanıcı bulunamadı.");
-            var customerPicture = await DbContext.CustomerPictures.SingleOrDefaultAsync(a => a.ID == customer.ID);
+            var customerPicture = await DbContext.CustomerPictures.SingleOrDefaultAsync(a => a.ID == customerId);
             if (customerPicture is null)
                 return new DataResult(ResultStatus.Error, "Böyle bir resim bulunamadı.");
             return new DataResult(ResultStatus.Success, customerPicture);

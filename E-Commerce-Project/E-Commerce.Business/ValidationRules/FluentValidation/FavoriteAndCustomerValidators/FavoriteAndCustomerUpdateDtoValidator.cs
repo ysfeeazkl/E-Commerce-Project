@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace E_Commerce.Business.ValidationRules.FluentValidation.FavoriteAndCustomerValidators
 {
-    public class FavoriteAndCustomeUpdateDtoValidator : AbstractValidator<FavoriteAndCustomerUpdateDto>
+    public class FavoriteAndCustomerUpdateDtoValidator : AbstractValidator<FavoriteAndCustomerUpdateDto>
     {
-        public FavoriteAndCustomeUpdateDtoValidator()
+        public FavoriteAndCustomerUpdateDtoValidator()
         {
             RuleFor(a => a.CustomerID).NotEmpty().GreaterThan(0).WithMessage("Customer alanı boş geçilmez");
             RuleFor(a => a.ProductID).NotEmpty().GreaterThan(0).WithMessage("Product alanı boş geçilmez");

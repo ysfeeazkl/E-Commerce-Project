@@ -1,4 +1,5 @@
-﻿using E_Commerce.Shared.Utilities.Results.Abstract;
+﻿using E_Commerce.Entities.Dtos.ProductPictureDtos;
+using E_Commerce.Shared.Utilities.Results.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace E_Commerce.Business.Abstract
 {
     public interface IProductPictureService
     {
-        Task<IDataResult> AddAsync();
-        Task<IDataResult> UpdateAsync();
+        Task<IDataResult> AddAsync(ProductPictureAddDto productPictureAddDto);
+        Task<IDataResult> UpdateAsync(ProductPictureUpdateDto productPictureUpdateDto);
         Task<IDataResult> GetByIdAsync(int id);
-        Task<IDataResult> GetByCustomerIdAsync(int customerId);
+        Task<IDataResult> GetAllByProductIdAsync(int productId);
         Task<IDataResult> DeleteByFileNameAsync(string fileName);
     }
 }
