@@ -4,14 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Commerce.Entities.ComplexTypes
+namespace E_Commerce.Business.ValidationRules.SellerPictureValidators
 {
-
-
-    public enum OrderBy
+    internal class SellerPicutreAddDtoValidator
     {
-        Id = 0,
-        Az = 1,
-        CreatedDate = 2,
     }
 }

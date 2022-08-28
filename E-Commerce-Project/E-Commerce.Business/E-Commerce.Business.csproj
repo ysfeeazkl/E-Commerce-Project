@@ -27,4 +27,9 @@
     <ProjectReference Include="..\E-Commerce.Shared\E-Commerce.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ValidationRules\ShoppingCartValidators\" />
+    <Folder Include="ValidationRules\ReportValidators\" />
+  </ItemGroup>
+
 </Project>

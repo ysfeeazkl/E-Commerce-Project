@@ -13,6 +13,7 @@ namespace E_Commerce.Business.Abstract
     {
         Task<IDataResult> AddAsync(ProductAddDto productAddDto);
         Task<IDataResult> UpdateAsync(ProductUpdateDto productUpdateDto);
+        Task<IDataResult> LikeEventById (int id);
         Task<IDataResult> GetAllAsync(bool? isDeleted, bool isAscending, int currentPage, int pageSize, OrderBy orderBy);
         Task<IDataResult> GetByID(int id);
         Task<IDataResult> GetAllBySellerID(int sellerId);

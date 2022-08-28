@@ -120,6 +120,17 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, query);
         }
 
+        public async Task<IDataResult> LikeEventById (int id,int likeAndDislike)
+        {
+            var product = await DbContext.Products.SingleOrDefaultAsync(a => a.ID == id);
+            if (product is null)
+                return new DataResult(ResultStatus.Error, "Böyle bir ürün bulunamadı.");
+            product.Like += likeAndDislike;
+
+            DbContext.Products.Update(product);
+            await DbContext.SaveChangesAsync();
+            return new DataResult(ResultStatus.Success, product);
+        }
         public async Task<IDataResult> GetByID(int id)
         {
             var product = await DbContext.Products.SingleOrDefaultAsync(a => a.ID == id);
