@@ -87,20 +87,20 @@ namespace E_Commerce.Business.Concrete
         {
             ValidationTool.Validate(new CategoryAndProductUpdateDtoValidator(), categoryAndProductUpdateDto);
 
-            var categoryAndArticle = await DbContext.CategoryAndProducts.Include(a => a.Product).SingleOrDefaultAsync(a => a.ProductID == categoryAndProductUpdateDto.ProductID && a.CategoryID == categoryAndProductUpdateDto.CategoryID);
-            if (categoryAndArticle is null)
+            var categoryAndProduct = await DbContext.CategoryAndProducts.Include(a => a.Product).SingleOrDefaultAsync(a => a.ProductID == categoryAndProductUpdateDto.ProductID && a.CategoryID == categoryAndProductUpdateDto.CategoryID);
+            if (categoryAndProduct is null)
                 return new DataResult(ResultStatus.Error, "Böyle bir kategori ve ürün bulunamadı.");
 
             if (categoryAndProductUpdateDto.NewProductID.HasValue)
-                categoryAndArticle.ProductID = categoryAndProductUpdateDto.NewProductID.Value;
+                categoryAndProduct.ProductID = categoryAndProductUpdateDto.NewProductID.Value;
             if (categoryAndProductUpdateDto.NewCategoryID.HasValue)
-                categoryAndArticle.CategoryID = categoryAndProductUpdateDto.NewCategoryID.Value;
-            categoryAndArticle.Product.ModifiedDate = DateTime.Now;
+                categoryAndProduct.CategoryID = categoryAndProductUpdateDto.NewCategoryID.Value;
+            categoryAndProduct.Product.ModifiedDate = DateTime.Now;
 
-            var newCategoryAndArticle = Mapper.Map<CategoryAndProductUpdateDto, CategoryAndProduct>(categoryAndProductUpdateDto, categoryAndArticle);
-            DbContext.CategoryAndProducts.Update(newCategoryAndArticle);
+            var newCategoryAndProduct = Mapper.Map<CategoryAndProductUpdateDto, CategoryAndProduct>(categoryAndProductUpdateDto, categoryAndProduct);
+            DbContext.CategoryAndProducts.Update(newCategoryAndProduct);
             await DbContext.SaveChangesAsync();
-            return new DataResult(ResultStatus.Success, categoryAndArticle);
+            return new DataResult(ResultStatus.Success, categoryAndProduct);
         }
     }    
 }

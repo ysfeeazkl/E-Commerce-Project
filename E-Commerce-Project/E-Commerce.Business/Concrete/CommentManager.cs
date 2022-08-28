@@ -126,8 +126,6 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, comment);
         }
 
-     
-
         public async Task<IDataResult> GetAllByProductID(int productId)
         {
             var product = await DbContext.Products.SingleOrDefaultAsync(a => a.ID == productId);

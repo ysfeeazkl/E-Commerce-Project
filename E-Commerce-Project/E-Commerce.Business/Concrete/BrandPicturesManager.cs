@@ -91,7 +91,11 @@ namespace E_Commerce.Business.Concrete
 
         public async Task<IDataResult> GetAllByBrandIdAsync(int brandId)
         {
-            var brandPicture = DbContext.BrandPictures.Where(a => a.BrandID == brandId);
+            var brand = await DbContext.BrandPictures.SingleOrDefaultAsync(a => a.ID == brandId);
+            if (brand is null)
+                return new DataResult(ResultStatus.Error, "Böyle bir marka bulunmamakta.");
+
+            var brandPicture =  DbContext.BrandPictures.Where(a => a.BrandID == brandId);
             if (brandPicture is null)
                 return new DataResult(ResultStatus.Error, "Böyle bir resim bulunamadı.");
             return new DataResult(ResultStatus.Success, brandPicture);
@@ -107,7 +111,7 @@ namespace E_Commerce.Business.Concrete
 
         public async Task<IDataResult> GetByFileNameAsync(string fileName)
         {
-            var brandPicture = DbContext.BrandPictures.SingleOrDefaultAsync(a => a.FileName == fileName);
+            var brandPicture = await DbContext.BrandPictures.SingleOrDefaultAsync(a => a.FileName == fileName);
             if (brandPicture is null)
                 return new DataResult(ResultStatus.Error, "Böyle bir resim bulunamadı.");
             return new DataResult(ResultStatus.Success, brandPicture);
