@@ -21,7 +21,7 @@ namespace E_Commerce.Data.Concrete.Mappings
             builder.HasOne<Customer>(c => c.Customer).WithMany(c => c.Comments).HasForeignKey(c => c.CustomerID);
             builder.HasOne<Product>(c => c.Product).WithMany(c => c.Comments).HasForeignKey(c => c.ProductID);
             builder.HasOne<Seller>(c => c.Seller).WithMany(c => c.Comments).HasForeignKey(c => c.SellerID);
-            builder.HasOne<Comment>(c => c.BaseComment).WithMany(c => c.Comments).HasForeignKey(c => c.CommentID);
+            builder.HasOne<Comment>(c => c.BaseComment).WithMany(c => c.Comments).HasForeignKey(c => c.BaseCommentID);
              
             builder.ToTable("Comments");
         }

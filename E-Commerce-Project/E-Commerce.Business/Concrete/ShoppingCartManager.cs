@@ -29,7 +29,7 @@ namespace E_Commerce.Business.Concrete
 
         public async Task<IDataResult> AddAsync(ShoppingCartAddDto shoppingCartAddDto)
         {
-            ValidationTool.Validate(new ShoppingCartAddDtoValidator, shoppingCartAddDto);
+            ValidationTool.Validate(new ShoppingCartAddDtoValidator(), shoppingCartAddDto);
 
             var shoppingCartIsExist = await DbContext.ShoppingCarts.SingleOrDefaultAsync(a => a.CustomerID == shoppingCartAddDto.CustomerID);
             if (shoppingCartIsExist is not null)
@@ -50,7 +50,7 @@ namespace E_Commerce.Business.Concrete
 
         public async Task<IDataResult> UpdateAsync(ShoppingCartUpdateDto shoppingCartUpdateDto)
         {
-            ValidationTool.Validate(new ShoppingCartUpdateDtoValidator, shoppingCartUpdateDto);
+            ValidationTool.Validate(new ShoppingCartUpdateDtoValidator(), shoppingCartUpdateDto);
 
             var shoppingCart = await DbContext.ShoppingCarts.SingleOrDefaultAsync(a => a.ID == shoppingCartUpdateDto.ID);
             if (shoppingCart is null)
