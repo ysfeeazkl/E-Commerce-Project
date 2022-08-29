@@ -1,4 +1,5 @@
-﻿using E_Commerce.Shared.Utilities.Results.Abstract;
+﻿using E_Commerce.Entities.Dtos.ShoppingCartDtos;
+using E_Commerce.Shared.Utilities.Results.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace E_Commerce.Business.Abstract
 {
     public interface IShoppingCartService
     {
-        Task<IDataResult> AddAsync();
-        Task<IDataResult> UpdateAsync();
+        Task<IDataResult> AddAsync(ShoppingCartAddDto shoppingCartAddDto);
+        Task<IDataResult> UpdateAsync(ShoppingCartUpdateDto shoppingCartUpdateDto);
         Task<IDataResult> GetAllAsync();
         Task<IDataResult> GetByID(int id);
         Task<IDataResult> GetByCustomerID(int customerId);
