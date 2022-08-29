@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace E_Commerce.Business.Concrete
 {
     public class SellerManager : ManagerBase,ISellerService
-    {
+    {        
         public SellerManager(CommerceContext context, IMapper mapper) : base(mapper, context)
         {
 

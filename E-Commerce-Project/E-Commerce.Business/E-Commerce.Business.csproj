@@ -38,7 +38,6 @@
 
   <ItemGroup>
     <Folder Include="ValidationRules\FluentValidation\ShoppingCart\" />
-    <Folder Include="ValidationRules\FluentValidation\SellerValidators\" />
   </ItemGroup>
 
 </Project>

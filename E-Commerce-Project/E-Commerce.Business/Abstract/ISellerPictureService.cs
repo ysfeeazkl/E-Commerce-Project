@@ -13,7 +13,7 @@ namespace E_Commerce.Business.Abstract
         Task<IDataResult> AddAsync(SellerPictureAddDto sellerPictureAddDto);
         Task<IDataResult> UpdateAsync(SellerPictureUpdateDto sellerPictureUpdateDto);
         Task<IDataResult> GetByIdAsync(int id);
-        Task<IDataResult> GetBySellerIdAsync(int sellerId);
+        Task<IDataResult> GetAllBySellerIdAsync(int sellerId);
         Task<IDataResult> DeleteByFileNameAsync(string fileName);
     }
 }
