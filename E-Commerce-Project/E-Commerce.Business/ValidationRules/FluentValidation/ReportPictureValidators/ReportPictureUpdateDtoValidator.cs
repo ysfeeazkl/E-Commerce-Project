@@ -16,7 +16,6 @@ namespace E_Commerce.Business.ValidationRules.FluentValidation.ReportPictureVali
             RuleFor(a => a.ID).NotEmpty();
             RuleFor(a => a.File).NotEmpty();
             RuleFor(a => a.ReportID).NotEmpty();
-
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using E_Commerce.Shared.Utilities.Results.Abstract;
+﻿using E_Commerce.Entities.Dtos.ReportPictureDtos;
+using E_Commerce.Shared.Utilities.Results.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace E_Commerce.Business.Abstract
 {
     public interface IReportPictureService
     {
-        Task<IDataResult> AddAsync();
-        Task<IDataResult> UpdateAsync();
+        Task<IDataResult> AddAsync(ReportPictureAddDto reportPictureAddDto);
+        Task<IDataResult> UpdateAsync(ReportPictureUpdateDto reportPictureUpdateDto);
         Task<IDataResult> GetByIdAsync(int id);
-        Task<IDataResult> GetByReportIdAsync(int reportId);
+        Task<IDataResult> GetAllByReportIdAsync(int reportId);
         Task<IDataResult> DeleteByFileNameAsync(string fileName);
     }
 }

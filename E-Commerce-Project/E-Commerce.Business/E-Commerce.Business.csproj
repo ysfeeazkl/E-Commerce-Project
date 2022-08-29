@@ -8,6 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ValidationRules\ReportValidators\**" />
+    <Compile Remove="ValidationRules\ShoppingCartValidators\**" />
+    <EmbeddedResource Remove="ValidationRules\ReportValidators\**" />
+    <EmbeddedResource Remove="ValidationRules\ShoppingCartValidators\**" />
+    <None Remove="ValidationRules\ReportValidators\**" />
+    <None Remove="ValidationRules\ShoppingCartValidators\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Bot.Builder.Integration.AspNet.Core" Version="4.17.1" />
@@ -28,8 +37,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ValidationRules\ShoppingCartValidators\" />
-    <Folder Include="ValidationRules\ReportValidators\" />
+    <Folder Include="ValidationRules\FluentValidation\ShoppingCart\" />
+    <Folder Include="ValidationRules\FluentValidation\SellerValidators\" />
   </ItemGroup>
 
 </Project>

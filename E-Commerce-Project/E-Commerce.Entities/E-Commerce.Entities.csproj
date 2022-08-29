@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="Dtos\SellerDtos\" />
-    <Folder Include="Dtos\ReportDtos\" />
     <Folder Include="Dtos\ShoppingCartDtos\" />
     <Folder Include="Utilities\" />
   </ItemGroup>
