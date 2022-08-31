@@ -15,8 +15,8 @@ namespace E_Commerce.Business.Abstract
     {
         Task<IEnumerable<OperationClaim>> GetClaimsAsync(Customer customer);
         Task<AccessToken> CreateAccessTokenAsync(Customer customer, bool isRefresh);
-        Task<IDataResult> CreateAccessTokenByCustomerIdAsync(int customerId, bool isRefresh);
 
+        Task<IDataResult> CreateAccessTokenByCustomerIdAsync(int customerId, bool isRefresh);
         Task<IDataResult> RegisterAsync(CustomerRegisterDto customerRegisterDto);
         Task<IDataResult> LoginWithPhoneAsync(CustomerLoginWithPhoneDto customerLoginWithPhoneDto);
         Task<IDataResult> LoginWithEmailAsync(CustomerLoginWithEmailDto customerLoginWithEmailDto);

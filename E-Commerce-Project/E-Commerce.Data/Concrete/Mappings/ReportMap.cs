@@ -23,7 +23,9 @@ namespace E_Commerce.Data.Concrete.Mappings
             builder.HasOne<Product>(c => c.Product).WithMany(c => c.Reports).HasForeignKey(c => c.ProductID);
             builder.HasOne<Seller>(c => c.Seller).WithMany(c => c.Reports).HasForeignKey(c => c.SellerID);
             builder.HasOne<Brand>(c => c.Brand).WithMany(c => c.Reports).HasForeignKey(c => c.BrandID);
-          
+
+            builder.HasOne<ReportPicture>(a => a.ReportPicture).WithOne(a => a.Report).HasForeignKey<ReportPicture>(c => c.ReportID);
+
 
             builder.ToTable("Reports");
         }

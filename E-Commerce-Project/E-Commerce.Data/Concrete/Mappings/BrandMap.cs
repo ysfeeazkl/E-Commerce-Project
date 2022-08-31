@@ -19,6 +19,9 @@ namespace E_Commerce.Data.Concrete.Mappings
             builder.Property(a => a.Name).IsRequired();
             builder.Property(a => a.Name).HasMaxLength(150);
 
+            builder.HasOne<BrandPicture>(a => a.BrandPicture).WithOne(a => a.Brand).HasForeignKey<BrandPicture>(c => c.BrandID);
+
+
             builder.ToTable("Brands");
         }
     }

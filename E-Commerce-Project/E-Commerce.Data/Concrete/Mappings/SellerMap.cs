@@ -19,7 +19,10 @@ namespace E_Commerce.Data.Concrete.Mappings
             builder.Property(a => a.Name).IsRequired();
             builder.Property(a => a.Name).HasMaxLength(150);
 
-            builder.ToTable("Seller");
+            builder.HasOne<SellerPicture>(a => a.SellerPicture).WithOne(a => a.Seller).HasForeignKey<SellerPicture>(c => c.SellerID);
+
+
+            builder.ToTable("Sellers");
         }
     }
 }

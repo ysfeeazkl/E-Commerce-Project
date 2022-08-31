@@ -18,7 +18,7 @@ namespace E_Commerce.Data.Concrete.Mappings
 
             builder.HasOne<Customer>(a => a.Customer).WithOne(a => a.ShoppingCart).HasForeignKey<Customer>(c => c.ShoppingCartID);
 
-            builder.ToTable("Seller");
+            builder.ToTable("ShoppingCarts");
         }
     }
 }
