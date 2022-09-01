@@ -13,12 +13,12 @@ namespace E_Commerce.Business.Abstract
     {
         Task<IDataResult> AddAsync(ProductAddDto productAddDto);
         Task<IDataResult> UpdateAsync(ProductUpdateDto productUpdateDto);
-        Task<IDataResult> LikeEventById (int id, int likeAndDislike);
+        Task<IDataResult> LikeEventByIdAsync(int id, int likeAndDislike);
         Task<IDataResult> GetAllAsync(bool? isDeleted, bool isAscending, int currentPage, int pageSize, OrderBy orderBy);
-        Task<IDataResult> GetByID(int id);
-        Task<IDataResult> GetAllBySellerID(int sellerId);
-        Task<IDataResult> GetAllByCategoryID(int categoryId);
-        Task<IDataResult> GetAllByBrandID(int brandId);
+        Task<IDataResult> GetByIdAsync(int id);
+        Task<IDataResult> GetAllBySellerIdAsync(int sellerId);
+        Task<IDataResult> GetAllByCategoryIdAsync(int categoryId);
+        Task<IDataResult> GetAllByBrandIdAsync(int brandId);
         Task<IDataResult> DeleteByIdAsync(int id);
         Task<IDataResult> HardDeleteByIdAsync(int id);
     }

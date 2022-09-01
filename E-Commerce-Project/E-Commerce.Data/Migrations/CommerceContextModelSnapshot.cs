@@ -413,7 +413,7 @@ namespace E_Commerce.Data.Migrations
                         {
                             ID = 1,
                             CreatedByUserId = 0,
-                            CreatedDate = new DateTime(2022, 8, 31, 18, 43, 24, 341, DateTimeKind.Local).AddTicks(7787),
+                            CreatedDate = new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4615),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 0,
@@ -423,7 +423,7 @@ namespace E_Commerce.Data.Migrations
                         {
                             ID = 2,
                             CreatedByUserId = 0,
-                            CreatedDate = new DateTime(2022, 8, 31, 18, 43, 24, 341, DateTimeKind.Local).AddTicks(7789),
+                            CreatedDate = new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4616),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 0,
@@ -433,7 +433,7 @@ namespace E_Commerce.Data.Migrations
                         {
                             ID = 3,
                             CreatedByUserId = 0,
-                            CreatedDate = new DateTime(2022, 8, 31, 18, 43, 24, 341, DateTimeKind.Local).AddTicks(7790),
+                            CreatedDate = new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4618),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 0,
@@ -443,7 +443,7 @@ namespace E_Commerce.Data.Migrations
                         {
                             ID = 4,
                             CreatedByUserId = 0,
-                            CreatedDate = new DateTime(2022, 8, 31, 18, 43, 24, 341, DateTimeKind.Local).AddTicks(7791),
+                            CreatedDate = new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4619),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 0,
@@ -788,7 +788,7 @@ namespace E_Commerce.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Seller", (string)null);
+                    b.ToTable("ShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("E_Commerce.Entities.Concrete.UserToken", b =>
@@ -820,7 +820,7 @@ namespace E_Commerce.Data.Migrations
 
                     b.HasIndex("CustomerID");
 
-                    b.ToTable("UserTokens");
+                    b.ToTable("UserTokens", (string)null);
                 });
 
             modelBuilder.Entity("E_Commerce.Entities.Concrete.Brand", b =>
@@ -839,13 +839,13 @@ namespace E_Commerce.Data.Migrations
                     b.HasOne("E_Commerce.Entities.Concrete.Category", "Category")
                         .WithMany("CategoryAndProducts")
                         .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("E_Commerce.Entities.Concrete.Product", "Product")
                         .WithMany("CategoryAndProducts")
                         .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Category");
@@ -858,25 +858,25 @@ namespace E_Commerce.Data.Migrations
                     b.HasOne("E_Commerce.Entities.Concrete.Comment", "BaseComment")
                         .WithMany("Comments")
                         .HasForeignKey("BaseCommentID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("E_Commerce.Entities.Concrete.Customer", "Customer")
                         .WithMany("Comments")
                         .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("E_Commerce.Entities.Concrete.Product", "Product")
                         .WithMany("Comments")
                         .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("E_Commerce.Entities.Concrete.Seller", "Seller")
                         .WithMany("Comments")
                         .HasForeignKey("SellerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("BaseComment");
@@ -931,13 +931,13 @@ namespace E_Commerce.Data.Migrations
                     b.HasOne("E_Commerce.Entities.Concrete.Customer", "Customer")
                         .WithMany("Favorites")
                         .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("E_Commerce.Entities.Concrete.Product", "Product")
                         .WithMany("Favorites")
                         .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -950,19 +950,19 @@ namespace E_Commerce.Data.Migrations
                     b.HasOne("E_Commerce.Entities.Concrete.Brand", "Brand")
                         .WithMany("Products")
                         .HasForeignKey("SellerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("E_Commerce.Entities.Concrete.Seller", "Seller")
                         .WithMany("Products")
                         .HasForeignKey("SellerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("E_Commerce.Entities.Concrete.ShoppingCart", "ShoppingCart")
                         .WithMany("Products")
                         .HasForeignKey("ShoppingCartID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Brand");

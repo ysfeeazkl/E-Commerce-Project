@@ -21,7 +21,6 @@ namespace E_Commerce.Data.Concrete.Mappings
 
             builder.HasOne<Customer>(a => a.Customer).WithOne(a => a.CustomerPicture).HasForeignKey<Customer>(c => c.CustomerPictureID);
 
-
             builder.ToTable("CustomerPictures");
         }
     }

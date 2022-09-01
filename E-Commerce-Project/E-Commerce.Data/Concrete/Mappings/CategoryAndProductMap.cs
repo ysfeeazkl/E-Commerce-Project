@@ -15,8 +15,8 @@ namespace E_Commerce.Data.Concrete.Mappings
         {
             builder.HasKey(cap => new { cap.CategoryID, cap.ProductID});
 
-            builder.HasOne<Category>(gac => gac.Category).WithMany(c => c.CategoryAndProducts).HasForeignKey(gac => gac.CategoryID);
-            builder.HasOne<Product>(gac => gac.Product).WithMany(p => p.CategoryAndProducts).HasForeignKey(gac => gac.ProductID);
+            builder.HasOne<Category>(gac => gac.Category).WithMany(c => c.CategoryAndProducts).HasForeignKey(gac => gac.CategoryID).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne<Product>(gac => gac.Product).WithMany(p => p.CategoryAndProducts).HasForeignKey(gac => gac.ProductID).OnDelete(DeleteBehavior.NoAction);
 
             builder.ToTable("CategoryAndProducts");
         }

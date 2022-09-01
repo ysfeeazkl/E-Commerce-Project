@@ -14,8 +14,8 @@ namespace E_Commerce.Business.Abstract
         Task<IDataResult> AddAsync(BrandAddDto brandAddDto);
         Task<IDataResult> UpdateAsync(BrandUpdateDto brandUpdateDto);
         Task<IDataResult> GetAllAsync(bool? isDeleted, bool isAscending, int currentPage, int pageSize, OrderBy orderBy);
-        Task<IDataResult> GetByID(int id);
-        Task<IDataResult> GetByName(string Name);
+        Task<IDataResult> GetByIdAsync(int id);
+        Task<IDataResult> GetByNameAsync(string Name);
         Task<IDataResult> DeleteByIdAsync(int id);
         Task<IDataResult> HardDeleteByIdAsync(int id);
 

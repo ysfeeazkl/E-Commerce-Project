@@ -49,12 +49,13 @@ namespace E_Commerce.Data.Concrete.Context
             modelBuilder.ApplyConfiguration(new ShoppingCartMap());
             modelBuilder.ApplyConfiguration(new OperationClaimMap());
             modelBuilder.ApplyConfiguration(new CustomerAndOperationClaimMap());
+            modelBuilder.ApplyConfiguration(new UserTokenMap());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             
-            optionsBuilder.UseSqlServer("Server=localhost;Database=CommerceDb;rusted_Connection=false");
+            optionsBuilder.UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=CommerceDb;Trusted_Connection=True;");
         }
     }
 }

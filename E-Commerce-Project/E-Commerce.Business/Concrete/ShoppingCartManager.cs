@@ -79,7 +79,7 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Error, shoppingCarts);
         }
 
-        public async Task<IDataResult> GetByCustomerID(int customerId)
+        public async Task<IDataResult> GetByCustomerIdAsync(int customerId)
         {
             var customer = await DbContext.Customers.SingleOrDefaultAsync(a => a.ID == customerId);
             if (customer is null)
@@ -90,7 +90,7 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, shoppingCart);
         }
 
-        public async Task<IDataResult> GetByID(int id)
+        public async Task<IDataResult> GetByIdAsync(int id)
         {
             var shoppingCart = await DbContext.ShoppingCarts.SingleOrDefaultAsync(a => a.ID == id);
             if (shoppingCart is null)

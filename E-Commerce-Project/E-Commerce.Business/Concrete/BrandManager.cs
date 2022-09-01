@@ -37,7 +37,7 @@ namespace E_Commerce.Business.Concrete
                 return new DataResult(ResultStatus.Error, "Böyle bir Marka zaten mevcut");
             var brand = Mapper.Map<Brand>(brandAddDto);
             brand.CreatedDate = DateTime.Now;
-            brand.CreatedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(a => a.Type == "UserId").Value);
+            //brand.CreatedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(a => a.Type == "UserId").Value);
 
             await DbContext.Brands.AddAsync(brand);
             await DbContext.SaveChangesAsync();
@@ -126,7 +126,7 @@ namespace E_Commerce.Business.Concrete
 
         }
 
-        public async Task<IDataResult> GetByID(int id)
+        public async Task<IDataResult> GetByIdAsync(int id)
         {
             var brand = await DbContext.Brands.SingleOrDefaultAsync(a=>a.Equals(id));
             if (brand is null)
@@ -134,7 +134,7 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success,brand);
         }
 
-        public async Task<IDataResult> GetByName(string name)
+        public async Task<IDataResult> GetByNameAsync(string name)
         {
             var brand = await DbContext.Brands.SingleOrDefaultAsync(a => a.Name == name);
             if (brand is null)

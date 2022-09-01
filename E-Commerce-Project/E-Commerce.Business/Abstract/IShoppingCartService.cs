@@ -13,8 +13,8 @@ namespace E_Commerce.Business.Abstract
         Task<IDataResult> AddAsync(ShoppingCartAddDto shoppingCartAddDto);
         Task<IDataResult> UpdateAsync(ShoppingCartUpdateDto shoppingCartUpdateDto);
         Task<IDataResult> GetAllAsync();
-        Task<IDataResult> GetByID(int id);
-        Task<IDataResult> GetByCustomerID(int customerId);
+        Task<IDataResult> GetByIdAsync(int id);
+        Task<IDataResult> GetByCustomerIdAsync(int customerId);
         Task<IDataResult> DeleteByIdAsync(int id);
         Task<IDataResult> HardDeleteByIdAsync(int id);
     }

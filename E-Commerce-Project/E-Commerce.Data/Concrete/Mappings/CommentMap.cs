@@ -18,11 +18,11 @@ namespace E_Commerce.Data.Concrete.Mappings
             builder.Property(c => c.Content).IsRequired();
             builder.Property(c => c.Content).HasMaxLength(400);
 
-            builder.HasOne<Customer>(c => c.Customer).WithMany(c => c.Comments).HasForeignKey(c => c.CustomerID);
-            builder.HasOne<Product>(c => c.Product).WithMany(c => c.Comments).HasForeignKey(c => c.ProductID);
-            builder.HasOne<Seller>(c => c.Seller).WithMany(c => c.Comments).HasForeignKey(c => c.SellerID);
-            builder.HasOne<Comment>(c => c.BaseComment).WithMany(c => c.Comments).HasForeignKey(c => c.BaseCommentID);
-             
+            builder.HasOne<Customer>(c => c.Customer).WithMany(c => c.Comments).HasForeignKey(c => c.CustomerID).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne<Product>(c => c.Product).WithMany(c => c.Comments).HasForeignKey(c => c.ProductID).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne<Seller>(c => c.Seller).WithMany(c => c.Comments).HasForeignKey(c => c.SellerID).OnDelete(DeleteBehavior.NoAction); 
+            builder.HasOne<Comment>(c => c.BaseComment).WithMany(c => c.Comments).HasForeignKey(c => c.BaseCommentID).OnDelete(DeleteBehavior.NoAction); 
+
             builder.ToTable("Comments");
         }
     }

@@ -96,7 +96,7 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, comments);
         }
 
-        public async Task<IDataResult> GetByID(int id)
+        public async Task<IDataResult> GetByIdAsync(int id)
         {
             var comment = await DbContext.Comments.SingleOrDefaultAsync(a => a.ID == id);
             if (comment is null)
@@ -104,18 +104,18 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, comment);
         }
 
-        public async Task<IDataResult> GetAllByBaseCommentID(int baseCommentId)
+        public async Task<IDataResult> GetAllByBaseCommentIdAsync(int baseCommentId)
         {
             var baseComment = await DbContext.Comments.SingleOrDefaultAsync(a => a.ID == baseCommentId);
             if (baseComment is null)
                 return new DataResult(ResultStatus.Error, "Böyle bir yorum bulanamadı");
-            var comments =  DbContext.Comments.Where(a => a.BaseCommentID == baseCommentId);
+            var comments = DbContext.Comments.Where(a => a.BaseCommentID == baseCommentId);
             if (comments is null)
                 return new DataResult(ResultStatus.Error, "Böyle bir yorum bulunamadı.");
             return new DataResult(ResultStatus.Success, comments);
         }
 
-        public async Task<IDataResult> GetAllByCustomerID(int customerId)
+        public async Task<IDataResult> GetAllByCustomerIdAsync(int customerId)
         {
             var customer = await DbContext.Customers.SingleOrDefaultAsync(a => a.ID == customerId);
             if (customer is null)
@@ -126,7 +126,7 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, comments);
         }
 
-        public async Task<IDataResult> GetAllByProductID(int productId)
+        public async Task<IDataResult> GetAllByProductIdAsync(int productId)
         {
             var product = await DbContext.Products.SingleOrDefaultAsync(a => a.ID == productId);
             if (product is null)
@@ -137,7 +137,7 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, comments);
         }
 
-        public async Task<IDataResult> GetAllBySellerID(int sellerId)
+        public async Task<IDataResult> GetAllBySellerIdAsync(int sellerId)
         {
             var seller = await DbContext.Sellers.SingleOrDefaultAsync(a => a.ID == sellerId);
             if (seller is null)

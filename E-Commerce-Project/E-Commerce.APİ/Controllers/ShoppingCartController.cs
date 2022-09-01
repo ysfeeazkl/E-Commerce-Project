@@ -7,5 +7,12 @@ namespace E_Commerce.APİ.Controllers
     [ApiController]
     public class ShoppingCartController : ControllerBase
     {
+        //Task<IDataResult> AddAsync(ShoppingCartAddDto shoppingCartAddDto);
+        //Task<IDataResult> UpdateAsync(ShoppingCartUpdateDto shoppingCartUpdateDto);
+        //Task<IDataResult> GetAllAsync();
+        //Task<IDataResult> GetByIdAsync(int id);
+        //Task<IDataResult> GetByCustomerIdAsync(int customerId);
+        //Task<IDataResult> DeleteByIdAsync(int id);
+        //Task<IDataResult> HardDeleteByIdAsync(int id);
     }
 }

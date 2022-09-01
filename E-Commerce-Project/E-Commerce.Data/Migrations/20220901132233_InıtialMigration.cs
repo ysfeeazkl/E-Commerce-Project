@@ -112,26 +112,6 @@ namespace E_Commerce.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Seller",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerID = table.Column<int>(type: "int", nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Seller", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SellerPictures",
                 columns: table => new
                 {
@@ -150,6 +130,26 @@ namespace E_Commerce.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SellerPictures", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShoppingCarts",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerID = table.Column<int>(type: "int", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingCarts", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -175,6 +175,33 @@ namespace E_Commerce.Data.Migrations
                         name: "FK_Brands_BrandPictures_BrandPictureID",
                         column: x => x.BrandPictureID,
                         principalTable: "BrandPictures",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sellers",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    SellerPictureID = table.Column<int>(type: "int", nullable: false),
+                    TotalProductsCount = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sellers", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Sellers_SellerPictures_SellerPictureID",
+                        column: x => x.SellerPictureID,
+                        principalTable: "SellerPictures",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -214,22 +241,27 @@ namespace E_Commerce.Data.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Customers_Seller_ShoppingCartID",
+                        name: "FK_Customers_ShoppingCarts_ShoppingCartID",
                         column: x => x.ShoppingCartID,
-                        principalTable: "Seller",
+                        principalTable: "ShoppingCarts",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sellers",
+                name: "Products",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    SellerPictureID = table.Column<int>(type: "int", nullable: false),
-                    TotalProductsCount = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Like = table.Column<int>(type: "int", nullable: false),
+                    SellerID = table.Column<int>(type: "int", nullable: false),
+                    BrandID = table.Column<int>(type: "int", nullable: false),
+                    ShoppingCartID = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedByUserId = table.Column<int>(type: "int", nullable: false),
@@ -239,13 +271,22 @@ namespace E_Commerce.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sellers", x => x.ID);
+                    table.PrimaryKey("PK_Products", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Sellers_SellerPictures_SellerPictureID",
-                        column: x => x.SellerPictureID,
-                        principalTable: "SellerPictures",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Products_Brands_SellerID",
+                        column: x => x.SellerID,
+                        principalTable: "Brands",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Products_Sellers_SellerID",
+                        column: x => x.SellerID,
+                        principalTable: "Sellers",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Products_ShoppingCarts_ShoppingCartID",
+                        column: x => x.ShoppingCartID,
+                        principalTable: "ShoppingCarts",
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -296,50 +337,6 @@ namespace E_Commerce.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Like = table.Column<int>(type: "int", nullable: false),
-                    SellerID = table.Column<int>(type: "int", nullable: false),
-                    BrandID = table.Column<int>(type: "int", nullable: false),
-                    ShoppingCartID = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Products_Brands_SellerID",
-                        column: x => x.SellerID,
-                        principalTable: "Brands",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Products_Seller_ShoppingCartID",
-                        column: x => x.ShoppingCartID,
-                        principalTable: "Seller",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Products_Sellers_SellerID",
-                        column: x => x.SellerID,
-                        principalTable: "Sellers",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CategoryAndProducts",
                 columns: table => new
                 {
@@ -353,14 +350,12 @@ namespace E_Commerce.Data.Migrations
                         name: "FK_CategoryAndProducts_Categories_CategoryID",
                         column: x => x.CategoryID,
                         principalTable: "Categories",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_CategoryAndProducts_Products_ProductID",
                         column: x => x.ProductID,
                         principalTable: "Products",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -388,26 +383,22 @@ namespace E_Commerce.Data.Migrations
                         name: "FK_Comments_Comments_BaseCommentID",
                         column: x => x.BaseCommentID,
                         principalTable: "Comments",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Comments_Customers_CustomerID",
                         column: x => x.CustomerID,
                         principalTable: "Customers",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Comments_Products_ProductID",
                         column: x => x.ProductID,
                         principalTable: "Products",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Comments_Sellers_SellerID",
                         column: x => x.SellerID,
                         principalTable: "Sellers",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -424,14 +415,12 @@ namespace E_Commerce.Data.Migrations
                         name: "FK_FavoriteAndCustomers_Customers_CustomerID",
                         column: x => x.CustomerID,
                         principalTable: "Customers",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_FavoriteAndCustomers_Products_ProductID",
                         column: x => x.ProductID,
                         principalTable: "Products",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -527,10 +516,10 @@ namespace E_Commerce.Data.Migrations
                 columns: new[] { "ID", "CreatedByUserId", "CreatedDate", "IsActive", "IsDeleted", "ModifiedByUserId", "ModifiedDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, 0, new DateTime(2022, 8, 31, 18, 43, 24, 341, DateTimeKind.Local).AddTicks(7787), true, false, 0, null, "Admin" },
-                    { 2, 0, new DateTime(2022, 8, 31, 18, 43, 24, 341, DateTimeKind.Local).AddTicks(7789), true, false, 0, null, "Moderator" },
-                    { 3, 0, new DateTime(2022, 8, 31, 18, 43, 24, 341, DateTimeKind.Local).AddTicks(7790), true, false, 0, null, "Seller" },
-                    { 4, 0, new DateTime(2022, 8, 31, 18, 43, 24, 341, DateTimeKind.Local).AddTicks(7791), true, false, 0, null, "Customer" }
+                    { 1, 0, new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4615), true, false, 0, null, "Admin" },
+                    { 2, 0, new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4616), true, false, 0, null, "Moderator" },
+                    { 3, 0, new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4618), true, false, 0, null, "Seller" },
+                    { 4, 0, new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4619), true, false, 0, null, "Customer" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -689,10 +678,10 @@ namespace E_Commerce.Data.Migrations
                 name: "Brands");
 
             migrationBuilder.DropTable(
-                name: "Seller");
+                name: "Sellers");
 
             migrationBuilder.DropTable(
-                name: "Sellers");
+                name: "ShoppingCarts");
 
             migrationBuilder.DropTable(
                 name: "BrandPictures");

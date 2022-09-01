@@ -114,7 +114,7 @@ namespace E_Commerce.Business.Concrete
         }
 
 
-        public async Task<IDataResult> GetByID(int id)
+        public async Task<IDataResult> GetByIdAsync(int id)
         {
             var report = await DbContext.Reports.SingleOrDefaultAsync(a => a.ID == id);
             if (report is null)
@@ -123,7 +123,7 @@ namespace E_Commerce.Business.Concrete
 
         }
 
-        public async Task<IDataResult> GetAllByBrandID(int brandId)
+        public async Task<IDataResult> GetAllByBrandIdAsync(int brandId)
         {
             var brand = await DbContext.Brands.SingleOrDefaultAsync(a=>a.ID==brandId);
             if (brand is null)
@@ -136,7 +136,7 @@ namespace E_Commerce.Business.Concrete
 
         }
 
-        public async Task<IDataResult> GetAllByCommentID(int commentId)
+        public async Task<IDataResult> GetAllByCommentIdAsync(int commentId)
         {
             var comment = await DbContext.Comments.SingleOrDefaultAsync(a => a.ID == commentId);
             if (comment is null)
@@ -147,7 +147,7 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, reports);
         }
 
-        public async Task<IDataResult> GetAllByCustomerID(int customerId)
+        public async Task<IDataResult> GetAllByCustomerIdAsync(int customerId)
         {
             var customer = await DbContext.Customers.SingleOrDefaultAsync(a => a.ID == customerId);
             if (customer is null)
@@ -159,7 +159,7 @@ namespace E_Commerce.Business.Concrete
         }
 
       
-        public async Task<IDataResult> GetAllByProductID(int productId)
+        public async Task<IDataResult> GetAllByProductIdAsync(int productId)
         {
             var product = await DbContext.Products.SingleOrDefaultAsync(a => a.ID == productId);
             if (product is null)
@@ -170,7 +170,7 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, reports);
         }
 
-        public async Task<IDataResult> GetAllBySellerID(int sellerId)
+        public async Task<IDataResult> GetAllBySellerIdAsync(int sellerId)
         {
             var seller = await DbContext.Sellers.SingleOrDefaultAsync(a => a.ID == sellerId);
             if (seller is null)

@@ -29,6 +29,7 @@ namespace E_Commerce.Business.Concrete
     {
         IJwtHelper _jwtHelper;
         IHttpContextAccessor _httpContextAccessor;
+
         public AuthManager(CommerceContext context, IMapper mapper, IJwtHelper jwtHelper, IHttpContextAccessor httpContextAccessor) : base(mapper, context)
         {
             _jwtHelper = jwtHelper;

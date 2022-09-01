@@ -120,7 +120,7 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, query);
         }
 
-        public async Task<IDataResult> LikeEventById (int id,int likeAndDislike)
+        public async Task<IDataResult> LikeEventByIdAsync(int id,int likeAndDislike)
         {
             var product = await DbContext.Products.SingleOrDefaultAsync(a => a.ID == id);
             if (product is null)
@@ -131,14 +131,14 @@ namespace E_Commerce.Business.Concrete
             await DbContext.SaveChangesAsync();
             return new DataResult(ResultStatus.Success, product);
         }
-        public async Task<IDataResult> GetByID(int id)
+        public async Task<IDataResult> GetByIdAsync(int id)
         {
             var product = await DbContext.Products.SingleOrDefaultAsync(a => a.ID == id);
             if (product is null)
                 return new DataResult(ResultStatus.Error, "Böyle bir ürün bulunamadı.");
             return new DataResult(ResultStatus.Success, product);
         }
-        public async Task<IDataResult> GetAllByBrandID(int brandId)
+        public async Task<IDataResult> GetAllByBrandIdAsync(int brandId)
         {
             var brand = await DbContext.Brands.SingleOrDefaultAsync(a=>a.ID==brandId);
             if (brand is null)
@@ -151,7 +151,7 @@ namespace E_Commerce.Business.Concrete
 
         }
 
-        public async Task<IDataResult> GetAllByCategoryID(int categoryId)
+        public async Task<IDataResult> GetAllByCategoryIdAsync(int categoryId)
         {
             var category = await DbContext.Categories.SingleOrDefaultAsync(a => a.ID == categoryId);
             if (category is null)
@@ -163,7 +163,7 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, products);
         }
 
-        public async Task<IDataResult> GetAllBySellerID(int sellerId)
+        public async Task<IDataResult> GetAllBySellerIdAsync(int sellerId)
         {
             var seller = await DbContext.Sellers.SingleOrDefaultAsync(a => a.ID == sellerId);
             if (seller is null)

@@ -7,5 +7,10 @@ namespace E_Commerce.APİ.Controllers
     [ApiController]
     public class CustomerPictureController : ControllerBase
     {
+        //Task<IDataResult> AddAsync(CustomerPictureAddDto customerPictureAddDto);
+        //Task<IDataResult> UpdateAsync(CustomerPictureUpdateDto customerPictureUpdateDto);
+        //Task<IDataResult> GetByIdAsync(int id);
+        //Task<IDataResult> GetByCustomerIdAsync(int customerId);
+        //Task<IDataResult> DeleteByFileNameAsync(string fileName);
     }
 }

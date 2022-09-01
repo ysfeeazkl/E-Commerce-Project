@@ -15,8 +15,8 @@ namespace E_Commerce.Data.Concrete.Mappings
         {
             builder.HasKey(fac => new { fac.CustomerID, fac.ProductID });
 
-            builder.HasOne<Customer>(gac => gac.Customer).WithMany(c => c.Favorites).HasForeignKey(gac => gac.CustomerID);
-            builder.HasOne<Product>(gac => gac.Product).WithMany(p => p.Favorites).HasForeignKey(gac => gac.ProductID);
+            builder.HasOne<Customer>(gac => gac.Customer).WithMany(c => c.Favorites).HasForeignKey(gac => gac.CustomerID).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne<Product>(gac => gac.Product).WithMany(p => p.Favorites).HasForeignKey(gac => gac.ProductID).OnDelete(DeleteBehavior.NoAction);
 
             builder.ToTable("FavoriteAndCustomers");
         }

@@ -79,7 +79,7 @@ namespace E_Commerce.Business.Concrete
             return new DataResult(ResultStatus.Success, categories);
         }
 
-        public async Task<IDataResult> GetByID(int id)
+        public async Task<IDataResult> GetByIdAsync(int id)
         {
             var category = await DbContext.Categories.SingleOrDefaultAsync(a => a.ID == id);
             if (category is null)
