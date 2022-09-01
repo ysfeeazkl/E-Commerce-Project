@@ -163,7 +163,7 @@ namespace E_Commerce.Business.Concrete
             customer.PasswordSalt = passwordSalt;
             customer.IpAddress = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
             customer.CreatedDate = DateTime.Now;
-            customer.IsActive = false;
+            customer.IsActive = true;
             var accessToken = await CreateAccessTokenAsync(customer, false);
             await DbContext.Customers.AddAsync(customer);
             await DbContext.SaveChangesAsync();
