@@ -14,8 +14,8 @@ namespace E_Commerce.Business.AutoMapper
     {
         public CommentProfile()
         {
-            CreateMap<CommentAddDto, Category>();
-            CreateMap<CommentUpdateDto, Category>();
+            CreateMap<CommentAddDto, Comment>();
+            CreateMap<CommentUpdateDto, Comment>();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace E_Commerce.Data.Concrete.Mappings
             builder.Property(a => a.FileName).IsRequired();
             builder.Property(a => a.FilePath).IsRequired();
 
-            builder.HasOne<Customer>(a => a.Customer).WithOne(a => a.CustomerPicture).HasForeignKey<Customer>(c => c.CustomerPictureID);
+            //builder.HasOne<Customer>(a => a.Customer).WithOne(a => a.CustomerPicture).HasForeignKey<Customer>(c => c.CustomerPictureID);
 
             builder.ToTable("CustomerPictures");
         }

@@ -27,6 +27,8 @@ namespace E_Commerce.Data.Concrete.Mappings
             builder.Property(u => u.PasswordHash).HasColumnType("VARBINARY(500)");
 
             builder.HasOne<CustomerPicture>(a => a.CustomerPicture).WithOne(a => a.Customer).HasForeignKey<CustomerPicture>(c => c.CustomerID);
+            builder.HasOne<ShoppingCart>(a => a.ShoppingCart).WithOne(a => a.Customer).HasForeignKey<ShoppingCart>(c => c.CustomerID);
+
 
             builder.ToTable("Customers");
         }

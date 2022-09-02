@@ -35,7 +35,7 @@ namespace E_Commerce.Business.Concrete
             ValidationTool.Validate(new ProductAddDtoValidator(), productAddDto);
             var product = Mapper.Map<Product>(productAddDto);
             product.CreatedDate = DateTime.Now;
-            product.CreatedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext!.User.Claims.SingleOrDefault(a => a.Type == "UserId").Value);
+            //product.CreatedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext!.User.Claims.SingleOrDefault(a => a.Type == "UserId").Value);
             product.Like = 0;
 
             var seller = await DbContext.Sellers.SingleOrDefaultAsync(a => a.ID == productAddDto.SellerID);
@@ -84,7 +84,7 @@ namespace E_Commerce.Business.Concrete
             var product = Mapper.Map<ProductUpdateDto, Product>(productUpdateDto, productIsExist);
 
             product.ModifiedDate = DateTime.Now;
-            product.ModifiedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(a => a.Type == "UserId").Value);
+            //product.ModifiedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(a => a.Type == "UserId").Value);
 
             DbContext.Products.Update(product);
             await DbContext.SaveChangesAsync();

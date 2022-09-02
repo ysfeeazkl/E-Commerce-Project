@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce.Data.Migrations
 {
     [DbContext(typeof(CommerceContext))]
-    [Migration("20220901132233_InıtialMigration")]
-    partial class InıtialMigration
+    [Migration("20220902115119_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,9 +64,6 @@ namespace E_Commerce.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("BrandPictureID")
-                        .IsUnique();
-
                     b.ToTable("Brands", (string)null);
                 });
 
@@ -108,6 +105,9 @@ namespace E_Commerce.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("BrandID")
+                        .IsUnique();
 
                     b.ToTable("BrandPictures", (string)null);
                 });
@@ -295,12 +295,6 @@ namespace E_Commerce.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CustomerPictureID")
-                        .IsUnique();
-
-                    b.HasIndex("ShoppingCartID")
-                        .IsUnique();
-
                     b.ToTable("Customers", (string)null);
                 });
 
@@ -357,6 +351,9 @@ namespace E_Commerce.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CustomerID")
+                        .IsUnique();
 
                     b.ToTable("CustomerPictures", (string)null);
                 });
@@ -415,7 +412,7 @@ namespace E_Commerce.Data.Migrations
                         {
                             ID = 1,
                             CreatedByUserId = 0,
-                            CreatedDate = new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4615),
+                            CreatedDate = new DateTime(2022, 9, 2, 14, 51, 19, 563, DateTimeKind.Local).AddTicks(12),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 0,
@@ -425,7 +422,7 @@ namespace E_Commerce.Data.Migrations
                         {
                             ID = 2,
                             CreatedByUserId = 0,
-                            CreatedDate = new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4616),
+                            CreatedDate = new DateTime(2022, 9, 2, 14, 51, 19, 563, DateTimeKind.Local).AddTicks(18),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 0,
@@ -435,7 +432,7 @@ namespace E_Commerce.Data.Migrations
                         {
                             ID = 3,
                             CreatedByUserId = 0,
-                            CreatedDate = new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4618),
+                            CreatedDate = new DateTime(2022, 9, 2, 14, 51, 19, 563, DateTimeKind.Local).AddTicks(19),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 0,
@@ -445,7 +442,7 @@ namespace E_Commerce.Data.Migrations
                         {
                             ID = 4,
                             CreatedByUserId = 0,
-                            CreatedDate = new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4619),
+                            CreatedDate = new DateTime(2022, 9, 2, 14, 51, 19, 563, DateTimeKind.Local).AddTicks(20),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 0,
@@ -619,9 +616,6 @@ namespace E_Commerce.Data.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.HasIndex("ReportPictureID")
-                        .IsUnique();
-
                     b.HasIndex("SellerID");
 
                     b.ToTable("Reports", (string)null);
@@ -666,6 +660,9 @@ namespace E_Commerce.Data.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("ReportID")
+                        .IsUnique();
+
                     b.ToTable("ReportPictures", (string)null);
                 });
 
@@ -707,9 +704,6 @@ namespace E_Commerce.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("SellerPictureID")
-                        .IsUnique();
 
                     b.ToTable("Sellers", (string)null);
                 });
@@ -753,6 +747,9 @@ namespace E_Commerce.Data.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("SellerID")
+                        .IsUnique();
+
                     b.ToTable("SellerPictures", (string)null);
                 });
 
@@ -790,6 +787,9 @@ namespace E_Commerce.Data.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CustomerID")
+                        .IsUnique();
+
                     b.ToTable("ShoppingCarts", (string)null);
                 });
 
@@ -825,15 +825,15 @@ namespace E_Commerce.Data.Migrations
                     b.ToTable("UserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("E_Commerce.Entities.Concrete.Brand", b =>
+            modelBuilder.Entity("E_Commerce.Entities.Concrete.BrandPicture", b =>
                 {
-                    b.HasOne("E_Commerce.Entities.Concrete.BrandPicture", "BrandPicture")
-                        .WithOne("Brand")
-                        .HasForeignKey("E_Commerce.Entities.Concrete.Brand", "BrandPictureID")
+                    b.HasOne("E_Commerce.Entities.Concrete.Brand", "Brand")
+                        .WithOne("BrandPicture")
+                        .HasForeignKey("E_Commerce.Entities.Concrete.BrandPicture", "BrandID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BrandPicture");
+                    b.Navigation("Brand");
                 });
 
             modelBuilder.Entity("E_Commerce.Entities.Concrete.CategoryAndProduct", b =>
@@ -890,25 +890,6 @@ namespace E_Commerce.Data.Migrations
                     b.Navigation("Seller");
                 });
 
-            modelBuilder.Entity("E_Commerce.Entities.Concrete.Customer", b =>
-                {
-                    b.HasOne("E_Commerce.Entities.Concrete.CustomerPicture", "CustomerPicture")
-                        .WithOne("Customer")
-                        .HasForeignKey("E_Commerce.Entities.Concrete.Customer", "CustomerPictureID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("E_Commerce.Entities.Concrete.ShoppingCart", "ShoppingCart")
-                        .WithOne("Customer")
-                        .HasForeignKey("E_Commerce.Entities.Concrete.Customer", "ShoppingCartID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CustomerPicture");
-
-                    b.Navigation("ShoppingCart");
-                });
-
             modelBuilder.Entity("E_Commerce.Entities.Concrete.CustomerAndOperationClaim", b =>
                 {
                     b.HasOne("E_Commerce.Entities.Concrete.Customer", "Customer")
@@ -926,6 +907,17 @@ namespace E_Commerce.Data.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("OperationClaim");
+                });
+
+            modelBuilder.Entity("E_Commerce.Entities.Concrete.CustomerPicture", b =>
+                {
+                    b.HasOne("E_Commerce.Entities.Concrete.Customer", "Customer")
+                        .WithOne("CustomerPicture")
+                        .HasForeignKey("E_Commerce.Entities.Concrete.CustomerPicture", "CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("E_Commerce.Entities.Concrete.FavoriteAndCustomer", b =>
@@ -1011,12 +1003,6 @@ namespace E_Commerce.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("E_Commerce.Entities.Concrete.ReportPicture", "ReportPicture")
-                        .WithOne("Report")
-                        .HasForeignKey("E_Commerce.Entities.Concrete.Report", "ReportPictureID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("E_Commerce.Entities.Concrete.Seller", "Seller")
                         .WithMany("Reports")
                         .HasForeignKey("SellerID")
@@ -1031,20 +1017,40 @@ namespace E_Commerce.Data.Migrations
 
                     b.Navigation("Product");
 
-                    b.Navigation("ReportPicture");
+                    b.Navigation("Seller");
+                });
+
+            modelBuilder.Entity("E_Commerce.Entities.Concrete.ReportPicture", b =>
+                {
+                    b.HasOne("E_Commerce.Entities.Concrete.Report", "Report")
+                        .WithOne("ReportPicture")
+                        .HasForeignKey("E_Commerce.Entities.Concrete.ReportPicture", "ReportID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Report");
+                });
+
+            modelBuilder.Entity("E_Commerce.Entities.Concrete.SellerPicture", b =>
+                {
+                    b.HasOne("E_Commerce.Entities.Concrete.Seller", "Seller")
+                        .WithOne("SellerPicture")
+                        .HasForeignKey("E_Commerce.Entities.Concrete.SellerPicture", "SellerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Seller");
                 });
 
-            modelBuilder.Entity("E_Commerce.Entities.Concrete.Seller", b =>
+            modelBuilder.Entity("E_Commerce.Entities.Concrete.ShoppingCart", b =>
                 {
-                    b.HasOne("E_Commerce.Entities.Concrete.SellerPicture", "SellerPicture")
-                        .WithOne("Seller")
-                        .HasForeignKey("E_Commerce.Entities.Concrete.Seller", "SellerPictureID")
+                    b.HasOne("E_Commerce.Entities.Concrete.Customer", "Customer")
+                        .WithOne("ShoppingCart")
+                        .HasForeignKey("E_Commerce.Entities.Concrete.ShoppingCart", "CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("SellerPicture");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("E_Commerce.Entities.Concrete.UserToken", b =>
@@ -1060,15 +1066,11 @@ namespace E_Commerce.Data.Migrations
 
             modelBuilder.Entity("E_Commerce.Entities.Concrete.Brand", b =>
                 {
+                    b.Navigation("BrandPicture");
+
                     b.Navigation("Products");
 
                     b.Navigation("Reports");
-                });
-
-            modelBuilder.Entity("E_Commerce.Entities.Concrete.BrandPicture", b =>
-                {
-                    b.Navigation("Brand")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("E_Commerce.Entities.Concrete.Category", b =>
@@ -1089,17 +1091,15 @@ namespace E_Commerce.Data.Migrations
 
                     b.Navigation("CustomerAndOperationClaims");
 
+                    b.Navigation("CustomerPicture");
+
                     b.Navigation("Favorites");
 
                     b.Navigation("Reports");
 
-                    b.Navigation("UserTokens");
-                });
+                    b.Navigation("ShoppingCart");
 
-            modelBuilder.Entity("E_Commerce.Entities.Concrete.CustomerPicture", b =>
-                {
-                    b.Navigation("Customer")
-                        .IsRequired();
+                    b.Navigation("UserTokens");
                 });
 
             modelBuilder.Entity("E_Commerce.Entities.Concrete.OperationClaim", b =>
@@ -1120,10 +1120,9 @@ namespace E_Commerce.Data.Migrations
                     b.Navigation("Reports");
                 });
 
-            modelBuilder.Entity("E_Commerce.Entities.Concrete.ReportPicture", b =>
+            modelBuilder.Entity("E_Commerce.Entities.Concrete.Report", b =>
                 {
-                    b.Navigation("Report")
-                        .IsRequired();
+                    b.Navigation("ReportPicture");
                 });
 
             modelBuilder.Entity("E_Commerce.Entities.Concrete.Seller", b =>
@@ -1133,19 +1132,12 @@ namespace E_Commerce.Data.Migrations
                     b.Navigation("Products");
 
                     b.Navigation("Reports");
-                });
 
-            modelBuilder.Entity("E_Commerce.Entities.Concrete.SellerPicture", b =>
-                {
-                    b.Navigation("Seller")
-                        .IsRequired();
+                    b.Navigation("SellerPicture");
                 });
 
             modelBuilder.Entity("E_Commerce.Entities.Concrete.ShoppingCart", b =>
                 {
-                    b.Navigation("Customer")
-                        .IsRequired();
-
                     b.Navigation("Products");
                 });
 #pragma warning restore 612, 618

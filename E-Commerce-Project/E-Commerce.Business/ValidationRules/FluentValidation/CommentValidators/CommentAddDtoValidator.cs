@@ -15,9 +15,9 @@ namespace E_Commerce.Business.ValidationRules.FluentValidation.CommentValidators
             RuleFor(a => a.Content).NotEmpty().WithMessage("İçerik alanı boş geçilmez");
             RuleFor(a => a.CustomerID).NotEmpty().GreaterThan(0);
 
-            RuleFor(a => a.SellerID).GreaterThan(0).When(a=>a.ProductID==0 || a.BaseCommentID ==0);
-            RuleFor(a => a.ProductID).GreaterThan(0).When(a => a.SellerID == 0 || a.BaseCommentID == 0);
-            RuleFor(a => a.BaseCommentID).GreaterThan(0).When(a => a.ProductID == 0 || a.SellerID == 0);
+            RuleFor(a => a.SellerID).GreaterThan(0).When(a => a.ProductID != 0 && a.BaseCommentID != 0);
+            RuleFor(a => a.ProductID).GreaterThan(0).When(a => a.SellerID != 0 && a.BaseCommentID != 0);
+            RuleFor(a => a.BaseCommentID).GreaterThan(0).When(a => a.ProductID != 0 && a.SellerID != 0);
 
         }
     }

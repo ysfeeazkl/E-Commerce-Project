@@ -5,19 +5,19 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace E_Commerce.Data.Migrations
 {
-    public partial class InıtialMigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "BrandPictures",
+                name: "Brands",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BrandID = table.Column<int>(type: "int", nullable: false),
-                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Introduc = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BrandPictureID = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedByUserId = table.Column<int>(type: "int", nullable: false),
@@ -27,7 +27,7 @@ namespace E_Commerce.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BrandPictures", x => x.ID);
+                    table.PrimaryKey("PK_Brands", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,162 +48,6 @@ namespace E_Commerce.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CustomerPictures",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CustomerID = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CustomerPictures", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "OperationClaims",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OperationClaims", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ReportPictures",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReportID = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ReportPictures", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SellerPictures",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SellerID = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SellerPictures", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ShoppingCarts",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerID = table.Column<int>(type: "int", nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ShoppingCarts", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Brands",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    Introduc = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BrandPictureID = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Brands", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Brands_BrandPictures_BrandPictureID",
-                        column: x => x.BrandPictureID,
-                        principalTable: "BrandPictures",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Sellers",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    SellerPictureID = table.Column<int>(type: "int", nullable: false),
-                    TotalProductsCount = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sellers", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Sellers_SellerPictures_SellerPictureID",
-                        column: x => x.SellerPictureID,
-                        principalTable: "SellerPictures",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -234,16 +78,198 @@ namespace E_Commerce.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OperationClaims",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OperationClaims", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sellers",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    SellerPictureID = table.Column<int>(type: "int", nullable: false),
+                    TotalProductsCount = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sellers", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BrandPictures",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BrandID = table.Column<int>(type: "int", nullable: false),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BrandPictures", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Customers_CustomerPictures_CustomerPictureID",
-                        column: x => x.CustomerPictureID,
-                        principalTable: "CustomerPictures",
+                        name: "FK_BrandPictures_Brands_BrandID",
+                        column: x => x.BrandID,
+                        principalTable: "Brands",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CustomerPictures",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CustomerID = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerPictures", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_CustomerPictures_Customers_CustomerID",
+                        column: x => x.CustomerID,
+                        principalTable: "Customers",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShoppingCarts",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerID = table.Column<int>(type: "int", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingCarts", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCarts_Customers_CustomerID",
+                        column: x => x.CustomerID,
+                        principalTable: "Customers",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserTokens",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerID = table.Column<int>(type: "int", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TokenExpiration = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IpAddress = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserTokens", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserTokens_Customers_CustomerID",
+                        column: x => x.CustomerID,
+                        principalTable: "Customers",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CustomerAndOperationClaims",
+                columns: table => new
+                {
+                    CustomerID = table.Column<int>(type: "int", nullable: false),
+                    OperationClaimID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerAndOperationClaims", x => new { x.CustomerID, x.OperationClaimID });
+                    table.ForeignKey(
+                        name: "FK_CustomerAndOperationClaims_Customers_CustomerID",
+                        column: x => x.CustomerID,
+                        principalTable: "Customers",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Customers_ShoppingCarts_ShoppingCartID",
-                        column: x => x.ShoppingCartID,
-                        principalTable: "ShoppingCarts",
+                        name: "FK_CustomerAndOperationClaims_OperationClaims_OperationClaimID",
+                        column: x => x.OperationClaimID,
+                        principalTable: "OperationClaims",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SellerPictures",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SellerID = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SellerPictures", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_SellerPictures_Sellers_SellerID",
+                        column: x => x.SellerID,
+                        principalTable: "Sellers",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -287,53 +313,6 @@ namespace E_Commerce.Data.Migrations
                         column: x => x.ShoppingCartID,
                         principalTable: "ShoppingCarts",
                         principalColumn: "ID");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CustomerAndOperationClaims",
-                columns: table => new
-                {
-                    CustomerID = table.Column<int>(type: "int", nullable: false),
-                    OperationClaimID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CustomerAndOperationClaims", x => new { x.CustomerID, x.OperationClaimID });
-                    table.ForeignKey(
-                        name: "FK_CustomerAndOperationClaims_Customers_CustomerID",
-                        column: x => x.CustomerID,
-                        principalTable: "Customers",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CustomerAndOperationClaims_OperationClaims_OperationClaimID",
-                        column: x => x.OperationClaimID,
-                        principalTable: "OperationClaims",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserTokens",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerID = table.Column<int>(type: "int", nullable: false),
-                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TokenExpiration = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IpAddress = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserTokens", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserTokens_Customers_CustomerID",
-                        column: x => x.CustomerID,
-                        principalTable: "Customers",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -498,15 +477,36 @@ namespace E_Commerce.Data.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Reports_ReportPictures_ReportPictureID",
-                        column: x => x.ReportPictureID,
-                        principalTable: "ReportPictures",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Reports_Sellers_SellerID",
                         column: x => x.SellerID,
                         principalTable: "Sellers",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReportPictures",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReportID = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedByUserId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReportPictures", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_ReportPictures_Reports_ReportID",
+                        column: x => x.ReportID,
+                        principalTable: "Reports",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -516,16 +516,16 @@ namespace E_Commerce.Data.Migrations
                 columns: new[] { "ID", "CreatedByUserId", "CreatedDate", "IsActive", "IsDeleted", "ModifiedByUserId", "ModifiedDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, 0, new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4615), true, false, 0, null, "Admin" },
-                    { 2, 0, new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4616), true, false, 0, null, "Moderator" },
-                    { 3, 0, new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4618), true, false, 0, null, "Seller" },
-                    { 4, 0, new DateTime(2022, 9, 1, 16, 22, 33, 205, DateTimeKind.Local).AddTicks(4619), true, false, 0, null, "Customer" }
+                    { 1, 0, new DateTime(2022, 9, 2, 14, 51, 19, 563, DateTimeKind.Local).AddTicks(12), true, false, 0, null, "Admin" },
+                    { 2, 0, new DateTime(2022, 9, 2, 14, 51, 19, 563, DateTimeKind.Local).AddTicks(18), true, false, 0, null, "Moderator" },
+                    { 3, 0, new DateTime(2022, 9, 2, 14, 51, 19, 563, DateTimeKind.Local).AddTicks(19), true, false, 0, null, "Seller" },
+                    { 4, 0, new DateTime(2022, 9, 2, 14, 51, 19, 563, DateTimeKind.Local).AddTicks(20), true, false, 0, null, "Customer" }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Brands_BrandPictureID",
-                table: "Brands",
-                column: "BrandPictureID",
+                name: "IX_BrandPictures_BrandID",
+                table: "BrandPictures",
+                column: "BrandID",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -559,15 +559,9 @@ namespace E_Commerce.Data.Migrations
                 column: "OperationClaimID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_CustomerPictureID",
-                table: "Customers",
-                column: "CustomerPictureID",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Customers_ShoppingCartID",
-                table: "Customers",
-                column: "ShoppingCartID",
+                name: "IX_CustomerPictures_CustomerID",
+                table: "CustomerPictures",
+                column: "CustomerID",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -591,6 +585,12 @@ namespace E_Commerce.Data.Migrations
                 column: "ShoppingCartID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ReportPictures_ReportID",
+                table: "ReportPictures",
+                column: "ReportID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reports_BrandID",
                 table: "Reports",
                 column: "BrandID");
@@ -611,20 +611,20 @@ namespace E_Commerce.Data.Migrations
                 column: "ProductID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reports_ReportPictureID",
-                table: "Reports",
-                column: "ReportPictureID",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Reports_SellerID",
                 table: "Reports",
                 column: "SellerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sellers_SellerPictureID",
-                table: "Sellers",
-                column: "SellerPictureID",
+                name: "IX_SellerPictures_SellerID",
+                table: "SellerPictures",
+                column: "SellerID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCarts_CustomerID",
+                table: "ShoppingCarts",
+                column: "CustomerID",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -636,10 +636,16 @@ namespace E_Commerce.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "BrandPictures");
+
+            migrationBuilder.DropTable(
                 name: "CategoryAndProducts");
 
             migrationBuilder.DropTable(
                 name: "CustomerAndOperationClaims");
+
+            migrationBuilder.DropTable(
+                name: "CustomerPictures");
 
             migrationBuilder.DropTable(
                 name: "FavoriteAndCustomers");
@@ -648,7 +654,10 @@ namespace E_Commerce.Data.Migrations
                 name: "ProductPictures");
 
             migrationBuilder.DropTable(
-                name: "Reports");
+                name: "ReportPictures");
+
+            migrationBuilder.DropTable(
+                name: "SellerPictures");
 
             migrationBuilder.DropTable(
                 name: "UserTokens");
@@ -660,19 +669,13 @@ namespace E_Commerce.Data.Migrations
                 name: "OperationClaims");
 
             migrationBuilder.DropTable(
+                name: "Reports");
+
+            migrationBuilder.DropTable(
                 name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "ReportPictures");
-
-            migrationBuilder.DropTable(
-                name: "Customers");
-
-            migrationBuilder.DropTable(
                 name: "Products");
-
-            migrationBuilder.DropTable(
-                name: "CustomerPictures");
 
             migrationBuilder.DropTable(
                 name: "Brands");
@@ -684,10 +687,7 @@ namespace E_Commerce.Data.Migrations
                 name: "ShoppingCarts");
 
             migrationBuilder.DropTable(
-                name: "BrandPictures");
-
-            migrationBuilder.DropTable(
-                name: "SellerPictures");
+                name: "Customers");
         }
     }
 }

@@ -64,7 +64,8 @@ builder.Services.AddAuthorization(options =>
 options.AddPolicy("Role",
     policy => policy.RequireClaim(claimType: ClaimTypes.Role, "Admin","Seller","Customer")));
 
-builder.Services.AddAutoMapper(typeof(CustomerProfile), typeof(UserTokenProfile));
+builder.Services.AddAutoMapper(typeof(CustomerProfile), typeof(UserTokenProfile), typeof(BrandProfile), typeof(BrandPictureProfile), typeof(CategoryAndProductProfile), typeof(CommentProfile), typeof(CustomerPictureProfile),typeof(ProductProfile), typeof(ProductPictureProfile),
+    typeof(ReportPictureProfile), typeof(ReportProfile), typeof(SellerPictureProfile), typeof(SellerProfile), typeof(ShoppingCartProfile));
 
 builder.Services.AddControllersWithViews()
     .AddNewtonsoftJson(options =>

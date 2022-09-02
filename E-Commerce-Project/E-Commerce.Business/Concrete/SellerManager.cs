@@ -35,12 +35,13 @@ namespace E_Commerce.Business.Concrete
             ValidationTool.Validate(new SellerAddDtoValidator(), sellerAddDto);
 
             var sellerIsExist = await DbContext.Sellers.SingleOrDefaultAsync(a => a.Name == sellerAddDto.Name);
-            if (sellerIsExist == null)
+            if (sellerIsExist is not null)
                 return new DataResult(ResultStatus.Error, "Zaten bu isimde bir satıcı bulunuyor");
 
             var seller = Mapper.Map<Seller>(sellerAddDto);
             seller.CreatedDate = DateTime.Now;
-            seller.CreatedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext!.User.Claims.SingleOrDefault(a => a.Type == "UserId")!.Value);
+            //seller.CreatedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext!.User.Claims.SingleOrDefault(a => a.Type == "UserId")!.Value);
+
 
             await DbContext.Sellers.AddAsync(seller);
             await DbContext.SaveChangesAsync();
@@ -85,31 +86,40 @@ namespace E_Commerce.Business.Concrete
 
         public async Task<IDataResult> GetAllAsync(bool? isDeleted, bool isAscending, int currentPage, int pageSize, OrderBy orderBy)
         {
-            IQueryable<Seller> query = DbContext.Set<Seller>().AsNoTracking();
-            if (isDeleted.HasValue)
-                query = query.Where(a => a.IsActive == isDeleted);
-            switch (orderBy)
+            try
             {
-                case OrderBy.Id:
-                    query = isAscending ? query.OrderBy(a => a.ID) : query.OrderByDescending(a => a.ID);
-                    break;
-                case OrderBy.Az:
-                    query = isAscending ? query.OrderBy(a => a.Name) : query.OrderByDescending(a => a.Name);
-                    break;
-                case OrderBy.CreatedDate:
-                    query = isAscending ? query.OrderBy(a => a.CreatedDate) : query.OrderByDescending(a => a.CreatedDate);
-                    break;
-                default:
-                    query = isAscending ? query.OrderBy(a => a.Name) : query.OrderByDescending(a => a.Name);
-                    break;
-            }
+                IQueryable<Seller> query = DbContext.Set<Seller>().AsNoTracking();
+                if (isDeleted.HasValue)
+                    query = query.Where(a => a.IsActive == isDeleted);
+                switch (orderBy)
+                {
+                    case OrderBy.Id:
+                        query = isAscending ? query.OrderBy(a => a.ID) : query.OrderByDescending(a => a.ID);
+                        break;
+                    case OrderBy.Az:
+                        query = isAscending ? query.OrderBy(a => a.Name) : query.OrderByDescending(a => a.Name);
+                        break;
+                    case OrderBy.CreatedDate:
+                        query = isAscending ? query.OrderBy(a => a.CreatedDate) : query.OrderByDescending(a => a.CreatedDate);
+                        break;
+                    default:
+                        query = isAscending ? query.OrderBy(a => a.Name) : query.OrderByDescending(a => a.Name);
+                        break;
+                }
 
-            if (currentPage != 0 && pageSize != 0)
-            {
-                var filteredQuery = await query.Skip((currentPage - 1) * pageSize).Take(pageSize).Select(a => Mapper.Map<Seller>(a)).ToListAsync();
-                return new DataResult(ResultStatus.Success, filteredQuery);
+                if (currentPage != 0 && pageSize != 0)
+                {
+                    var filteredQuery = await query.Skip((currentPage - 1) * pageSize).Take(pageSize).Select(a => Mapper.Map<Seller>(a)).ToListAsync();
+                    return new DataResult(ResultStatus.Success, filteredQuery);
+                }
+                return new DataResult(ResultStatus.Success, query);
             }
-            return new DataResult(ResultStatus.Success, query);
+            catch (Exception e)
+            {
+                var asddsa = e.Message;
+                throw e;
+            }
+           
         }
 
         public async Task<IDataResult> GetByIdAsync(int id)

@@ -12,7 +12,21 @@ namespace E_Commerce.Entities.Concrete
         public string Name { get; set; }
         public SellerPicture? SellerPicture { get; set; }
         public int SellerPictureID { get; set; }
-        public int TotalProductsCount { get { return Products.Count(); } set { TotalProductsCount = value; } }
+        public int? TotalProductsCount
+        {
+            get
+            {
+                if (Products is not null)
+                {
+                    return Products.Count();
+                }
+                else
+                {
+                    return 0;
+                };
+            } 
+            set 
+            { TotalProductsCount = value; } }
         public ICollection<Product>? Products { get; set; }
         public ICollection<Report>? Reports { get; set; }
         public ICollection<Comment>? Comments { get; set; }
