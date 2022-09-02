@@ -1,4 +1,5 @@
-﻿using E_Commerce.Entities.Dtos.ShoppingCartDtos;
+﻿using E_Commerce.Entities.ComplexTypes;
+using E_Commerce.Entities.Dtos.ShoppingCartDtos;
 using E_Commerce.Shared.Utilities.Results.Abstract;
 using System;
 using System.Collections.Generic;
