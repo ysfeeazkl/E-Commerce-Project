@@ -25,7 +25,7 @@ namespace E_Commerce.APİ.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> AddAsync(ShoppingCartAddDto shoppingCartAddDto)
+        public async Task<IActionResult> AddAsync( [FromBody] ShoppingCartAddDto shoppingCartAddDto)
         {
             var result = await _shoppingCartService.AddAsync(shoppingCartAddDto);
             if (result.ResultStatus == ResultStatus.Success)
@@ -33,7 +33,7 @@ namespace E_Commerce.APİ.Controllers
             return BadRequest(result);
         }
         [HttpPost("[action]")]
-        public async Task<IActionResult> UpdateAsync(ShoppingCartUpdateDto shoppingCartUpdateDto)
+        public async Task<IActionResult> UpdateAsync([FromBody] ShoppingCartUpdateDto shoppingCartUpdateDto)
         {
             var result = await _shoppingCartService.UpdateAsync(shoppingCartUpdateDto);
             if (result.ResultStatus == ResultStatus.Success)

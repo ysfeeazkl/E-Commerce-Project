@@ -31,7 +31,7 @@ namespace E_Commerce.APİ.Controllers
 
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> AddAsync(ReportAddDto reportAddDto)
+        public async Task<IActionResult> AddAsync([FromBody] ReportAddDto reportAddDto)
         {
             var result = await _reportService.AddAsync(reportAddDto);
             if (result.ResultStatus == ResultStatus.Success)
@@ -39,7 +39,7 @@ namespace E_Commerce.APİ.Controllers
             return BadRequest(result);
         }
         [HttpPost("[action]")]
-        public async Task<IActionResult> UpdateAsync(ReportUpdateDto reportUpdateDto)
+        public async Task<IActionResult> UpdateAsync([FromBody] ReportUpdateDto reportUpdateDto)
         {
             var result = await _reportService.UpdateAsync(reportUpdateDto);
             if (result.ResultStatus == ResultStatus.Success)

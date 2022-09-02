@@ -27,7 +27,7 @@ namespace E_Commerce.APİ.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> UpdateAsync(CustomerUpdateDto customerUpdateDto)
+        public async Task<IActionResult> UpdateAsync([FromBody] CustomerUpdateDto customerUpdateDto)
         {
             var result = await _customerService.UpdateAsync(customerUpdateDto);
             if (result.ResultStatus == ResultStatus.Success)

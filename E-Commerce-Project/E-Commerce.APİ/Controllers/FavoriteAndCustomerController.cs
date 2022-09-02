@@ -23,7 +23,7 @@ namespace E_Commerce.APİ.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> AddAsync(FavoriteAndCustomerAddDto favoriteAndCustomerAddDto)
+        public async Task<IActionResult> AddAsync([FromBody] FavoriteAndCustomerAddDto favoriteAndCustomerAddDto)
         {
             var result = await _favoriteAndCustomerService.AddAsync(favoriteAndCustomerAddDto);
             if (result.ResultStatus == ResultStatus.Success)
@@ -31,7 +31,7 @@ namespace E_Commerce.APİ.Controllers
             return BadRequest(result);
         }
         [HttpGet("[action]")]
-        public async Task<IActionResult> UpdateAsync(FavoriteAndCustomerUpdateDto favoriteAndCustomerUpdate)
+        public async Task<IActionResult> UpdateAsync([FromBody] FavoriteAndCustomerUpdateDto favoriteAndCustomerUpdate)
         {
             var result = await _favoriteAndCustomerService.UpdateAsync(favoriteAndCustomerUpdate);
             if (result.ResultStatus == ResultStatus.Success)

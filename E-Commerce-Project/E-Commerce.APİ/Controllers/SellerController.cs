@@ -27,7 +27,7 @@ namespace E_Commerce.APİ.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> AddAsync(SellerAddDto sellerAddDto)
+        public async Task<IActionResult> AddAsync([FromBody] SellerAddDto sellerAddDto)
         {
             var result = await _sellerService.AddAsync(sellerAddDto);
             if (result.ResultStatus == ResultStatus.Success)
@@ -35,7 +35,7 @@ namespace E_Commerce.APİ.Controllers
             return BadRequest(result);
         }
         [HttpPost("[action]")]
-        public async Task<IActionResult> UpdateAsync(SellerUpdateDto sellerUpdateDto)
+        public async Task<IActionResult> UpdateAsync([FromBody] SellerUpdateDto sellerUpdateDto)
         {
             var result = await _sellerService.UpdateAsync(sellerUpdateDto);
             if (result.ResultStatus == ResultStatus.Success)
