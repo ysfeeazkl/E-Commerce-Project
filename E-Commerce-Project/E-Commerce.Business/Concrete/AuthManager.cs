@@ -103,14 +103,14 @@ namespace E_Commerce.Business.Concrete
                     Token = Mapper.Map<UserTokenDto>(userToken),
                 };
 
-                return new DataResult(ResultStatus.Success, userLoginDto);
+                return new DataResult(ResultStatus.Success, $"{userLoginDto.Customer.FirstName} Hoşgeldiniz", userLoginDto);
             }
             return new DataResult(ResultStatus.Error, "Lütfen bilgilerinizi kontrol ediniz.");
         }
 
         public async Task<IDataResult> LoginWithPhoneAsync(CustomerLoginWithPhoneDto customerLoginWithPhoneDto)
         {
-            ValidationTool.Validate(new CustomerLoginWithEmailDtoValidator(), customerLoginWithPhoneDto);
+            ValidationTool.Validate(new CustomerLoginWithPhoneDtoValidator(), customerLoginWithPhoneDto);
 
             var customer = await DbContext.Customers.SingleOrDefaultAsync(a => a.PhoneNumber == customerLoginWithPhoneDto.PhoneNumber);
             if (customer is null)
@@ -142,7 +142,7 @@ namespace E_Commerce.Business.Concrete
                     Token = Mapper.Map<UserTokenDto>(userToken),
                 };
 
-                return new DataResult(ResultStatus.Success, userLoginDto);
+                return new DataResult(ResultStatus.Success,$"{userLoginDto.Customer.FirstName} Hoşgeldiniz", userLoginDto );
             }
             return new DataResult(ResultStatus.Error, "Lütfen bilgilerinizi kontrol ediniz.");
         }

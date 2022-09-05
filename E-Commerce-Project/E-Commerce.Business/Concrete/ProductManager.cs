@@ -38,8 +38,8 @@ namespace E_Commerce.Business.Concrete
             //product.CreatedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext!.User.Claims.SingleOrDefault(a => a.Type == "UserId").Value);
             product.Like = 0;
 
-            var seller = await DbContext.Sellers.SingleOrDefaultAsync(a => a.ID == productAddDto.SellerID);
-            product.Seller = seller!;
+            //var seller = await DbContext.Sellers.SingleOrDefaultAsync(a => a.ID == productAddDto.SellerID);
+            //product.Seller = seller!;
 
             if (productAddDto.BrandName is not null)
             {
@@ -50,8 +50,6 @@ namespace E_Commerce.Business.Concrete
                 product.Brand = brand;
                 product.BrandID = brand.ID;
             }
-
-            
 
             await DbContext.Products.AddAsync(product);
             await DbContext.SaveChangesAsync();

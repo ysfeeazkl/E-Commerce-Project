@@ -11,7 +11,7 @@ namespace E_Commerce.Entities.Concrete
     {
         public Customer Customer { get; set; }
         public int CustomerID { get; set; }
-        public decimal TotalPrice { get { return Products.Sum(a => a.Price); } set { TotalPrice = value; }}
-        public ICollection<Product> Products { get; set; }
+       //  public decimal? TotalPrice { get { return Products.Sum(a => a.Price); } set { TotalPrice = value; }}
+        public ICollection<Product>? Products { get; set; }
     }
 }

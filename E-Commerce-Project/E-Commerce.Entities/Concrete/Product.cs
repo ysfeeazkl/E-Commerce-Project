@@ -14,12 +14,12 @@ namespace E_Commerce.Entities.Concrete
         public string Color { get; set; }
         public decimal Price { get; set; }
         public int Like { get; set; }
-        public Seller Seller { get; set; }
+        public Seller? Seller { get; set; }
         public int SellerID { get; set; }
         public Brand? Brand { get; set; }
         public int BrandID { get; set; }
-        public ShoppingCart ShoppingCart { get; set; }
-        public int ShoppingCartID { get; set; }
+        public ShoppingCart? ShoppingCart { get; set; }
+        public int? ShoppingCartID { get; set; }
         public ICollection<ProductPicture> ProductPictures { get; set; }
         public ICollection<Report> Reports { get; set; }
         public ICollection<Comment> Comments { get; set; }

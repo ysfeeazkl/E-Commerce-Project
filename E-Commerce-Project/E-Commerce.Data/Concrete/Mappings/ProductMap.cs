@@ -23,7 +23,7 @@ namespace E_Commerce.Data.Concrete.Mappings
             builder.Property(a => a.Color).IsRequired(false);
 
             builder.HasOne<Seller>(a => a.Seller).WithMany(a => a.Products).HasForeignKey(a => a.SellerID).OnDelete(DeleteBehavior.NoAction);
-            builder.HasOne<Brand>(a => a.Brand).WithMany(a => a.Products).HasForeignKey(a => a.SellerID).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne<Brand>(a => a.Brand).WithMany(a => a.Products).HasForeignKey(a => a.BrandID).OnDelete(DeleteBehavior.NoAction);
             builder.HasOne<ShoppingCart>(a => a.ShoppingCart).WithMany(a => a.Products).HasForeignKey(a => a.ShoppingCartID).OnDelete(DeleteBehavior.NoAction);
 
 

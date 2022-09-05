@@ -174,7 +174,8 @@ namespace E_Commerce.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<int>("BaseCommentID")
+                    b.Property<int?>("BaseCommentID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -188,7 +189,8 @@ namespace E_Commerce.Data.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CustomerID")
+                    b.Property<int?>("CustomerID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
@@ -203,10 +205,12 @@ namespace E_Commerce.Data.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ProductID")
+                    b.Property<int?>("ProductID")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("SellerID")
+                    b.Property<int?>("SellerID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -410,7 +414,7 @@ namespace E_Commerce.Data.Migrations
                         {
                             ID = 1,
                             CreatedByUserId = 0,
-                            CreatedDate = new DateTime(2022, 9, 2, 14, 51, 19, 563, DateTimeKind.Local).AddTicks(12),
+                            CreatedDate = new DateTime(2022, 9, 5, 15, 16, 6, 70, DateTimeKind.Local).AddTicks(9142),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 0,
@@ -420,7 +424,7 @@ namespace E_Commerce.Data.Migrations
                         {
                             ID = 2,
                             CreatedByUserId = 0,
-                            CreatedDate = new DateTime(2022, 9, 2, 14, 51, 19, 563, DateTimeKind.Local).AddTicks(18),
+                            CreatedDate = new DateTime(2022, 9, 5, 15, 16, 6, 70, DateTimeKind.Local).AddTicks(9144),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 0,
@@ -430,7 +434,7 @@ namespace E_Commerce.Data.Migrations
                         {
                             ID = 3,
                             CreatedByUserId = 0,
-                            CreatedDate = new DateTime(2022, 9, 2, 14, 51, 19, 563, DateTimeKind.Local).AddTicks(19),
+                            CreatedDate = new DateTime(2022, 9, 5, 15, 16, 6, 70, DateTimeKind.Local).AddTicks(9145),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 0,
@@ -440,7 +444,7 @@ namespace E_Commerce.Data.Migrations
                         {
                             ID = 4,
                             CreatedByUserId = 0,
-                            CreatedDate = new DateTime(2022, 9, 2, 14, 51, 19, 563, DateTimeKind.Local).AddTicks(20),
+                            CreatedDate = new DateTime(2022, 9, 5, 15, 16, 6, 70, DateTimeKind.Local).AddTicks(9146),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByUserId = 0,
@@ -453,8 +457,6 @@ namespace E_Commerce.Data.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<int>("BrandID")
                         .HasColumnType("int");
@@ -499,14 +501,14 @@ namespace E_Commerce.Data.Migrations
                     b.Property<int>("SellerID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ShoppingCartID")
+                    b.Property<int?>("ShoppingCartID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("SellerID");
+                    b.HasIndex("BrandID");
 
-                    b.HasIndex("ShoppingCartID");
+                    b.HasIndex("SellerID");
 
                     b.ToTable("Products", (string)null);
                 });
@@ -698,7 +700,7 @@ namespace E_Commerce.Data.Migrations
                     b.Property<int>("SellerPictureID")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalProductsCount")
+                    b.Property<int?>("TotalProductsCount")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -780,7 +782,7 @@ namespace E_Commerce.Data.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("TotalPrice")
+                    b.Property<decimal?>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ID");
@@ -941,19 +943,19 @@ namespace E_Commerce.Data.Migrations
                 {
                     b.HasOne("E_Commerce.Entities.Concrete.Brand", "Brand")
                         .WithMany("Products")
-                        .HasForeignKey("SellerID")
+                        .HasForeignKey("BrandID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("E_Commerce.Entities.Concrete.ShoppingCart", "ShoppingCart")
+                        .WithMany("Products")
+                        .HasForeignKey("ID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("E_Commerce.Entities.Concrete.Seller", "Seller")
                         .WithMany("Products")
                         .HasForeignKey("SellerID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("E_Commerce.Entities.Concrete.ShoppingCart", "ShoppingCart")
-                        .WithMany("Products")
-                        .HasForeignKey("ShoppingCartID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

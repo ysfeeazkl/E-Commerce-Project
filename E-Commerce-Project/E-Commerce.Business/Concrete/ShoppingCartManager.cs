@@ -36,14 +36,25 @@ namespace E_Commerce.Business.Concrete
                 return new DataResult(ResultStatus.Error, "Bu kullanıcıya ait alışveriş sepeti zaten mevcut");
 
             var customer = await DbContext.Customers.SingleOrDefaultAsync(a => a.ID == shoppingCartAddDto.CustomerID);
+            if (customer is null)
+            {
+                return new DataResult(ResultStatus.Success, "Böyle bir kullanıcı bulunamadı");
+            }
+
 
             var shoppingCart = Mapper.Map<ShoppingCart>(shoppingCartAddDto);
             shoppingCart.CreatedDate = DateTime.Now;
-            shoppingCart.CreatedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext!.User.Claims.SingleOrDefault(a => a.Type == "UserId")!.Value);
+           // shoppingCart.CreatedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext!.User.Claims.SingleOrDefault(a => a.Type == "UserId")!.Value);
             shoppingCart.Customer = customer;
+
+            customer.ShoppingCart = shoppingCart;
+            customer.ShoppingCartID = shoppingCart.ID;
 
             await DbContext.ShoppingCarts.AddAsync(shoppingCart);
             await DbContext.SaveChangesAsync();
+            DbContext.Customers.Update(customer);
+            await DbContext.SaveChangesAsync();
+
 
             return new DataResult(ResultStatus.Success, "Alışveriş sepeti başarıyla oluşturuldu", shoppingCart);
         }
