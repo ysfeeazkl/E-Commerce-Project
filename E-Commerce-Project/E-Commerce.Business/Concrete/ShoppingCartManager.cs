@@ -104,7 +104,7 @@ namespace E_Commerce.Business.Concrete
 
         public async Task<IDataResult> GetByIdAsync(int id)
         {
-            var shoppingCart = await DbContext.ShoppingCarts.SingleOrDefaultAsync(a => a.ID == id);
+            var shoppingCart = await DbContext.ShoppingCarts.Include(a => a.Products).SingleOrDefaultAsync(a => a.ID == id);
             if (shoppingCart is null)
                 return new DataResult(ResultStatus.Error, "böyle bir alışveriş sepeti bulunmadı");
             return new DataResult(ResultStatus.Success, shoppingCart);
