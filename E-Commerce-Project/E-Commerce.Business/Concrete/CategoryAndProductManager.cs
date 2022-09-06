@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace E_Commerce.Business.Concrete
 {
-    public class CategoryAndProductManager : ManagerBase,ICategoryAndProductService
+    public class CategoryAndProductManager : ManagerBase, ICategoryAndProductService
     {
         public CategoryAndProductManager(CommerceContext context, IMapper mapper) : base(mapper, context)
         {
@@ -32,7 +32,7 @@ namespace E_Commerce.Business.Concrete
 
             var categoryAndProductIsExist = await DbContext.CategoryAndProducts.SingleOrDefaultAsync(a => a.CategoryID == categoryAndProductAddDto.CategoryID && a.ProductID == categoryAndProductAddDto.ProductID);
             if (categoryAndProductIsExist is not null)
-                return new DataResult(ResultStatus.Error,"Bu kategori ve ürün daha önce eşleşmiş durumda");
+                return new DataResult(ResultStatus.Error, "Bu kategori ve ürün daha önce eşleşmiş durumda");
 
             var product = await DbContext.Products.SingleOrDefaultAsync(a => a.ID == categoryAndProductAddDto.ProductID);
             if (product is null)
@@ -49,14 +49,17 @@ namespace E_Commerce.Business.Concrete
             category.CategoryAndProducts.Add(categoryAndProduct);
             product.CategoryAndProducts.Add(categoryAndProduct);
 
+
             await DbContext.CategoryAndProducts.AddAsync(categoryAndProduct);
+            DbContext.Categories.Update(category);
+            DbContext.Products.Update(product);
             await DbContext.SaveChangesAsync();
             return new DataResult(ResultStatus.Success, categoryAndProduct);
         }
 
         public async Task<IDataResult> DeleteByCategoryIdAndProductIdAsync(int categoryId, int productId)
         {
-            var categoryAndProduct = await DbContext.CategoryAndProducts.SingleOrDefaultAsync(a => a.ProductID == productId&& a.CategoryID == categoryId);
+            var categoryAndProduct = await DbContext.CategoryAndProducts.SingleOrDefaultAsync(a => a.ProductID == productId && a.CategoryID == categoryId);
             if (categoryAndProduct is null)
                 return new DataResult(ResultStatus.Error, "Böyle bir ürün ve kategori bulunamadı.");
             DbContext.CategoryAndProducts.Remove(categoryAndProduct);
@@ -102,5 +105,5 @@ namespace E_Commerce.Business.Concrete
             await DbContext.SaveChangesAsync();
             return new DataResult(ResultStatus.Success, categoryAndProduct);
         }
-    }    
+    }
 }

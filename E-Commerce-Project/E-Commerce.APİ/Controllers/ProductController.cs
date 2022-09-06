@@ -59,7 +59,7 @@ namespace E_Commerce.APİ.Controllers
             var result = await _productService.GetAllAsync(isDeleted, isAscending, currentPage, pageSize, orderBy);
             if (result.ResultStatus == ResultStatus.Success)
                 return Ok(result);
-            return BadRequest(result);
+            return BadRequest(result); 
         }
         [HttpGet("[action]")]
         public async Task<IActionResult> GetByIdAsync(int id)

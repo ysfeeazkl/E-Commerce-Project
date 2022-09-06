@@ -13,5 +13,10 @@ namespace E_Commerce.Entities.Concrete
         public int CustomerID { get; set; }
        //  public decimal? TotalPrice { get { return Products.Sum(a => a.Price); } set { TotalPrice = value; }}
         public ICollection<Product>? Products { get; set; }
+
+        public ShoppingCart()
+        {
+            Products = new List<Product>();
+        }
     }
 }

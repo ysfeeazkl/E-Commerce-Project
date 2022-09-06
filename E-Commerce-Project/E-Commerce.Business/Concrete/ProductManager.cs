@@ -91,7 +91,7 @@ namespace E_Commerce.Business.Concrete
 
         public async Task<IDataResult> GetAllAsync(bool? isDeleted, bool isAscending, int currentPage, int pageSize, OrderBy orderBy)
         {
-            IQueryable<Product> query = DbContext.Set<Product>().Include(a=>a.Seller).AsNoTracking();
+            IQueryable<Product> query = DbContext.Set<Product>().AsNoTracking();//.Include(a=>a.Seller)
             if (isDeleted.HasValue)
                 query = query.Where(a => a.IsActive == isDeleted);
             switch (orderBy)
@@ -106,7 +106,7 @@ namespace E_Commerce.Business.Concrete
                     query = isAscending ? query.OrderBy(a => a.CreatedDate) : query.OrderByDescending(a => a.CreatedDate);
                     break;
                 default:
-                    query = isAscending ? query.OrderBy(a => a.Seller.ID) : query.OrderByDescending(a => a.Seller.ID);
+                    query = isAscending ? query.OrderBy(a => a.ID) : query.OrderByDescending(a => a.ID);
                     break;
             }
 

@@ -72,7 +72,7 @@ namespace E_Commerce.Business.Concrete
 
             shoppingCart.Products.Add(product);
             shoppingCart.ModifiedDate = DateTime.Now;
-            shoppingCart.ModifiedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext!.User.Claims.SingleOrDefault(a => a.Type == "UserId")!.Value);
+            //shoppingCart.ModifiedByUserId = Convert.ToInt32(_httpContextAccessor.HttpContext!.User.Claims.SingleOrDefault(a => a.Type == "UserId")!.Value);
 
             DbContext.ShoppingCarts.Update(shoppingCart);
             await DbContext.SaveChangesAsync();
@@ -95,7 +95,8 @@ namespace E_Commerce.Business.Concrete
             var customer = await DbContext.Customers.SingleOrDefaultAsync(a => a.ID == customerId);
             if (customer is null)
                 return new DataResult(ResultStatus.Error, "böyle bir kullanıcı bulunmadı");
-            var shoppingCart = await DbContext.ShoppingCarts.SingleOrDefaultAsync(a => a.CustomerID == customer.ID);
+            var shoppingCart = await DbContext.ShoppingCarts.Include(a => a.Products).SingleOrDefaultAsync(a => a.CustomerID == customer.ID);//.Include(a=>a.Products)
+            //var asd = DbContext.Set<ShoppingCart>().Include(a=>a.Products).AsNoTracking();
             if (shoppingCart is null)
                 return new DataResult(ResultStatus.Error, "böyle bir alışveriş sepeti bulunmadı");
             return new DataResult(ResultStatus.Success, shoppingCart);

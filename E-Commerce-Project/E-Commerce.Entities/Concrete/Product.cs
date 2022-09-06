@@ -26,5 +26,10 @@ namespace E_Commerce.Entities.Concrete
         public ICollection<CategoryAndProduct> CategoryAndProducts { get; set; }
         public ICollection<FavoriteAndCustomer> Favorites { get; set; }
 
+        public Product()
+        {
+            CategoryAndProducts = new List<CategoryAndProduct>();
+        }
+
     }
 }

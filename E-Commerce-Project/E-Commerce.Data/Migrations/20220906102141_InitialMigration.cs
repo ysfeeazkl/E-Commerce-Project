@@ -181,7 +181,6 @@ namespace E_Commerce.Data.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedByUserId = table.Column<int>(type: "int", nullable: false),
@@ -278,7 +277,8 @@ namespace E_Commerce.Data.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -308,8 +308,8 @@ namespace E_Commerce.Data.Migrations
                         principalTable: "Sellers",
                         principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_Products_ShoppingCarts_ID",
-                        column: x => x.ID,
+                        name: "FK_Products_ShoppingCarts_ShoppingCartID",
+                        column: x => x.ShoppingCartID,
                         principalTable: "ShoppingCarts",
                         principalColumn: "ID");
                 });
@@ -344,9 +344,9 @@ namespace E_Commerce.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Content = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
-                    ProductID = table.Column<int>(type: "int", nullable: false),
-                    SellerID = table.Column<int>(type: "int", nullable: false),
-                    BaseCommentID = table.Column<int>(type: "int", nullable: false),
+                    ProductID = table.Column<int>(type: "int", nullable: true),
+                    SellerID = table.Column<int>(type: "int", nullable: true),
+                    BaseCommentID = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedByUserId = table.Column<int>(type: "int", nullable: false),
@@ -515,10 +515,10 @@ namespace E_Commerce.Data.Migrations
                 columns: new[] { "ID", "CreatedByUserId", "CreatedDate", "IsActive", "IsDeleted", "ModifiedByUserId", "ModifiedDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, 0, new DateTime(2022, 9, 5, 15, 16, 6, 70, DateTimeKind.Local).AddTicks(9142), true, false, 0, null, "Admin" },
-                    { 2, 0, new DateTime(2022, 9, 5, 15, 16, 6, 70, DateTimeKind.Local).AddTicks(9144), true, false, 0, null, "Moderator" },
-                    { 3, 0, new DateTime(2022, 9, 5, 15, 16, 6, 70, DateTimeKind.Local).AddTicks(9145), true, false, 0, null, "Seller" },
-                    { 4, 0, new DateTime(2022, 9, 5, 15, 16, 6, 70, DateTimeKind.Local).AddTicks(9146), true, false, 0, null, "Customer" }
+                    { 1, 0, new DateTime(2022, 9, 6, 13, 21, 41, 251, DateTimeKind.Local).AddTicks(3201), true, false, 0, null, "Admin" },
+                    { 2, 0, new DateTime(2022, 9, 6, 13, 21, 41, 251, DateTimeKind.Local).AddTicks(3203), true, false, 0, null, "Moderator" },
+                    { 3, 0, new DateTime(2022, 9, 6, 13, 21, 41, 251, DateTimeKind.Local).AddTicks(3204), true, false, 0, null, "Seller" },
+                    { 4, 0, new DateTime(2022, 9, 6, 13, 21, 41, 251, DateTimeKind.Local).AddTicks(3205), true, false, 0, null, "Customer" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -582,6 +582,11 @@ namespace E_Commerce.Data.Migrations
                 name: "IX_Products_SellerID",
                 table: "Products",
                 column: "SellerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ShoppingCartID",
+                table: "Products",
+                column: "ShoppingCartID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ReportPictures_ReportID",
