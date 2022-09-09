@@ -2,6 +2,7 @@
 using E_Commerce.Entities.ComplexTypes;
 using E_Commerce.Entities.Dtos.CategoryDtos;
 using E_Commerce.Shared.Utilities.Results.ComplexTypes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace E_Commerce.APİ.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Customer")]
     public class CategoryController : ControllerBase
     {
         //Task<IDataResult> AddAsync(CategoryAddDto categoryAddDto);

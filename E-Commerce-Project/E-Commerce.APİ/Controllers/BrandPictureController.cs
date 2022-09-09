@@ -25,7 +25,8 @@ namespace E_Commerce.APİ.Controllers
 
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> AddAsync([FromBody] BrandPictureAddDto brandPictureAddDto)
+
+        public async Task<IActionResult> AddAsync(BrandPictureAddDto brandPictureAddDto, IFormFile File)
         {
             var result = await _brandPictureService.AddAsync(brandPictureAddDto);
             if (result.ResultStatus == ResultStatus.Success)
