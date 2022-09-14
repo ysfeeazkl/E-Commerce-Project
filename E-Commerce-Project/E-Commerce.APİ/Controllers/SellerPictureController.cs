@@ -23,7 +23,7 @@ namespace E_Commerce.APİ.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> AddAsync([FromBody] SellerPictureAddDto sellerPictureAddDto)
+        public async Task<IActionResult> AddAsync( SellerPictureAddDto sellerPictureAddDto)
         {
             var result = await _sellerPictureService.AddAsync(sellerPictureAddDto);
             if (result.ResultStatus == ResultStatus.Success)
@@ -31,7 +31,7 @@ namespace E_Commerce.APİ.Controllers
             return BadRequest(result);
         }
         [HttpPost("[action]")]
-        public async Task<IActionResult> UpdateAsync([FromBody] SellerPictureUpdateDto sellerPictureUpdateDto)
+        public async Task<IActionResult> UpdateAsync( SellerPictureUpdateDto sellerPictureUpdateDto)
         {
             var result = await _sellerPictureService.UpdateAsync(sellerPictureUpdateDto);
             if (result.ResultStatus == ResultStatus.Success)

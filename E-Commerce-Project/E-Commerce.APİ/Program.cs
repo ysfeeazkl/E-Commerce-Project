@@ -3,6 +3,7 @@ using E_Commerce.Business.Extensions;
 using E_Commerce.Shared.Utilities.Security.Encryption;
 using E_Commerce.Shared.Utilities.Security.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -83,6 +84,15 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        builder.Environment.ContentRootPath + "/wwwroot" + "/Uploads"),
+    //Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Uploads")),
+    RequestPath = new PathString("/Uploads"),
+});
+
 app.UseAuthorization();
 app.MapControllers();
 

@@ -34,7 +34,7 @@ namespace E_Commerce.APİ.Controllers
             return BadRequest(result);
         }
         [HttpPost("[action]")]
-        public async Task<IActionResult> UpdateAsync([FromBody] BrandPictureUpdateDto brandPictureUpdateDto)
+        public async Task<IActionResult> UpdateAsync(BrandPictureUpdateDto brandPictureUpdateDto)
         {
             var result = await _brandPictureService.UpdateAsync(brandPictureUpdateDto);
             if (result.ResultStatus == ResultStatus.Success)
