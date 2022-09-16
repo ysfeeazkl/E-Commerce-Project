@@ -85,13 +85,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        builder.Environment.ContentRootPath + "/wwwroot" + "/Uploads"),
-    //Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Uploads")),
-    RequestPath = new PathString("/Uploads"),
-});
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    FileProvider = new PhysicalFileProvider(
+//        builder.Environment.ContentRootPath + "/wwwroot" + "/Uploads"),
+//    //Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Uploads")),
+//    RequestPath = new PathString("/Uploads"),
+//});
 
 app.UseAuthorization();
 app.MapControllers();
