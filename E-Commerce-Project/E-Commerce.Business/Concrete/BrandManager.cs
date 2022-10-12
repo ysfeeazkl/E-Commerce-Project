@@ -112,7 +112,7 @@ namespace E_Commerce.Business.Concrete
                     query = isAscending ? query.OrderBy(a => a.CreatedDate) : query.OrderByDescending(a => a.CreatedDate);
                     break;               
                 default:
-                    query = isAscending ? query.OrderBy(a => a.CreatedDate) : query.OrderByDescending(a => a.Name);
+                    query = isAscending ? query.OrderBy(a => a.CreatedDate) : query.OrderByDescending(a => a.CreatedDate);
                     break;
             }
 
